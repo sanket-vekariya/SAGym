@@ -1,13 +1,12 @@
 package com.sa.gym.view
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.facebook.AccessToken
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
 import kotlinx.coroutines.*
@@ -29,14 +28,13 @@ class SplashFragment : Fragment(), CoroutineScope {
 
                 //redirect to dashboard as like session with normal email and password
                 if (FirebaseAuth.getInstance().currentUser != null && FirebaseAuth.getInstance().currentUser!!.isEmailVerified) {
-                    val transaction = fragmentManager?.beginTransaction()
-                    transaction?.replace(R.id.container, DashboardFragment())?.commit()
-                    Log.d("main", "fragment created from splash fragment")
+                    startActivity(Intent(context, DashboardActivity::class.java))
+                    activity?.finish()
                 }
                 if (FirebaseAuth.getInstance().currentUser == null) {
                     val transaction = fragmentManager?.beginTransaction()
                     transaction?.replace(R.id.container, LoginFragment())?.commit()
-                    Log.d("main", "fragment created from splash fragment")
+                    activity?.finish()
                     Toast.makeText(context, "either signout or email not varified yet", Toast.LENGTH_SHORT).show()
                 }
             }

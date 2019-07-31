@@ -1,7 +1,36 @@
 <resources>
-    <string name="app_name">SAGym</string>
+    <string name="app_name">SA Gym</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="facebook_app_id">2741786625855540</string>
     <string name="fb_login_protocol_scheme">fb2741786625855540</string>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_list_user">User List</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="signout">signout</string>
+    <string name="reminder">reminder</string>
+    <string name="map">map</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="login">Login</string>
+    <string name="enter_your_password">Enter Your Password</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="content_description">Application Image</string>
+    <string name="send_email">Send Email</string>
+    <string name="login_fail">Login failed! Please try again later</string>
+    <string name="login_success">Login successful!</string>
+    <string name="insert_email_first">insert email first</string>
+    <string name="insert_password_first">insert password first</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="some_error_occurred">Some Error Occurred</string>
+    <string name="total_members">Total Members</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="active">Active</string>
+    <string name="email">Email</string>
+    <string name="remove_reminder">remove reminder</string>
 </resources>

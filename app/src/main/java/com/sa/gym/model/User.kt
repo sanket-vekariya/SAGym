@@ -5,13 +5,13 @@ class User {
     var id: String? = null
     var firstName: String? = null
     var lastName: String? = null
-    var active: Boolean? = null
+    var active: String? = null
     var email: String? = null
 
 
     constructor() {}
 
-    constructor(id: String, firstName: String, lastName: String, active: Boolean, email: String) {
+    constructor(id: String, firstName: String, lastName: String, active: String, email: String) {
         this.id = id
         this.firstName = firstName
         this.lastName = lastName
@@ -19,9 +19,9 @@ class User {
         this.email = email
     }
 
-    constructor(firstName: String, lastName: String, active: Boolean, email: String) {
-        this.lastName = lastName
+    constructor(firstName: String, lastName: String, active: String, email: String) {
         this.firstName = firstName
+        this.lastName = lastName
         this.active = active
         this.email = email
     }
