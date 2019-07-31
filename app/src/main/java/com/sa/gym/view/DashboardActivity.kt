@@ -23,7 +23,7 @@ class DashboardActivity : AppCompatActivity() {
             }
             R.id.navigation_list_user -> {
                 val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.container_dashboard, UserListFragment()).commit()
+                transaction.replace(R.id.container_dashboard, SampleFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
         }

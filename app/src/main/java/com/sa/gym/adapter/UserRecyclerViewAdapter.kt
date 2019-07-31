@@ -8,21 +8,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sa.gym.R
 import com.sa.gym.model.User
 import com.sa.gym.view.UserActivity
 
-class UserRecyclerViewAdapter(
-    private val userList: MutableList<User>,
-    private val context: Context,
-    private val firestoreDB: FirebaseFirestore
-)
+class UserRecyclerViewAdapter(private val userList: MutableList<User>, private val context: Context, private val firestoreDB: FirebaseFirestore)
     : RecyclerView.Adapter<UserRecyclerViewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
-
         return ViewHolder(view)
     }
 
@@ -46,6 +42,7 @@ class UserRecyclerViewAdapter(
         return userList.size
     }
 
+
     inner class ViewHolder internal constructor(view: View) : RecyclerView.ViewHolder(view) {
         internal var firstName: TextView = view.findViewById(R.id.text_firstname)
         internal var lastName: TextView = view.findViewById(R.id.text_lastname)
@@ -63,6 +60,21 @@ class UserRecyclerViewAdapter(
         intent.putExtra("UpdateUserLastName", user.lastName)
         intent.putExtra("UpdateUserActive", user.active)
         intent.putExtra("UpdateUserEmail", user.email)
+
+        intent.putExtra("UpdateUserMobile", user.mobile)
+        intent.putExtra("UpdateUserInTime", user.inTime)
+        intent.putExtra("UpdateUserOutTime", user.outTime)
+
+        intent.putExtra("UpdateUserAddress", user.address)
+        intent.putExtra("UpdateUserDOB", user.birthDate)
+        intent.putExtra("UpdateUserHeight", user.height!!.toFloat())
+        intent.putExtra("UpdateUserWeight", user.weight)
+
+        intent.putExtra("UpdateUserMembershipType", user.membershipType)
+        intent.putExtra("UpdateUserAmount", user.amount)
+        intent.putExtra("UpdateUserPaymentStatus", user.paymentStatus)
+        intent.putExtra("UpdateUserAddedBy", user.addedBy)
+
         intent.putExtra("ButtonText","Update")
         context.startActivity(intent)
     }

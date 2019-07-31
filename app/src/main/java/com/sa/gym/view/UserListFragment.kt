@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
@@ -16,8 +15,6 @@ import com.sa.gym.R
 import com.sa.gym.adapter.UserRecyclerViewAdapter
 import com.sa.gym.model.User
 import kotlinx.android.synthetic.main.fragment_user_list.*
-
-
 
 
 class UserListFragment : Fragment() {
@@ -39,7 +36,7 @@ class UserListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         firestoreDB = FirebaseFirestore.getInstance()
 
-        simpleSwipeRefreshLayout.setOnRefreshListener{
+        simpleSwipeRefreshLayout.setOnRefreshListener {
             simpleSwipeRefreshLayout.isRefreshing = false
             rvUserList.adapter = mAdapter
             rvUserList.invalidate()
@@ -63,8 +60,7 @@ class UserListFragment : Fragment() {
                     }
                 }
 
-                mAdapter =
-                    UserRecyclerViewAdapter(userList, activity!!.baseContext, firestoreDB!!)
+                mAdapter = UserRecyclerViewAdapter(userList, activity!!.baseContext, firestoreDB!!)
                 rvUserList.adapter = mAdapter
             })
     }
