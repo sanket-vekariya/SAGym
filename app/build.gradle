@@ -5,21 +5,19 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    dataBinding {
-        enabled = true
-    }
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.sa.gym"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion 20
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
-            shrinkResources false
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -27,8 +25,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    dataBinding {
-        enabled = true
+    splits {
+        abi {
+            enable true
+            reset()
+            include "x86", "mips"
+            universalApk true
+        }
     }
 }
 
@@ -43,19 +46,13 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha02'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.2.0-alpha02"
-    implementation 'com.google.android.material:material:1.1.0-alpha08'
+    implementation 'com.google.android.material:material:1.1.0-alpha09'
     implementation 'androidx.recyclerview:recyclerview:1.1.0-beta01'
-    implementation 'com.google.firebase:firebase-firestore:20.1.0'
+    implementation 'com.google.firebase:firebase-firestore:20.2.0'
     implementation 'com.google.firebase:firebase-core:17.0.1'
     implementation 'com.google.firebase:firebase-auth:18.1.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
-    implementation 'com.facebook.android:facebook-login:5.1.1'
-    implementation 'com.facebook.android:facebook-android-sdk:4.42.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    implementation "androidx.work:work-runtime-ktx:2.1.0"
-
-    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
-    implementation 'androidx.vectordrawable:vectordrawable-animated:1.1.0-rc01'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
 }

@@ -19,7 +19,6 @@
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_height="wrap_content"/>
 
-
     <FrameLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -29,6 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/container_dashboard">
     </FrameLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

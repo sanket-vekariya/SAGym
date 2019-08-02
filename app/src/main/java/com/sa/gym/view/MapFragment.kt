@@ -1,7 +1,5 @@
 package com.sa.gym.view
 
-
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,14 +31,16 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //setting up map fragment
         val mapFragment = childFragmentManager.findFragmentById(R.id.fragment_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
-    var builder = LatLngBounds.Builder()
+    private var builder = LatLngBounds.Builder()
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        //fetch location from fire-store "location" collection in Fire-storeSample Project
         FirebaseFirestore.getInstance().collection("location")
             .get()
             .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
@@ -50,8 +50,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                         builder.include(latlang)
                         googleMap.addMarker(MarkerOptions().position(latlang).title(document.get("info") as String))
                     }
+                    //for showing view only covering all the markers
                     val bounds = builder.build()
 
+                    //setting google map with animations
                     try {
                         val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 200)
                         googleMap.moveCamera(cameraUpdate)
@@ -63,11 +65,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                             mapView.viewTreeObserver.addOnGlobalLayoutListener(object :
                                 ViewTreeObserver.OnGlobalLayoutListener {
                                 override fun onGlobalLayout() {
-                                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                                        mapView.viewTreeObserver.removeGlobalOnLayoutListener(this)
-                                    } else {
-                                        mapView.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                                    }
+                                    //layout initialized here
+                                    mapView.viewTreeObserver.removeOnGlobalLayoutListener(this)
                                     mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 50))
                                 }
                             })
@@ -79,9 +78,5 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     return@OnCompleteListener
                 }
             })
-//
-//        googleMap.setOnInfoWindowClickListener { marker ->
-//            Toast.makeText(context, marker.title, Toast.LENGTH_SHORT).show()
-//        }
     }
 }

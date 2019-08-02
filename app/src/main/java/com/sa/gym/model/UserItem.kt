@@ -7,7 +7,7 @@ class UserItem(
     var id: String,
     var firstName: String,
     var lastName: String,
-    var active: String,
+    var active: Boolean,
     var email: String,
 
     var mobile: Long,
@@ -25,5 +25,5 @@ class UserItem(
     var addedBy: String
 ) : Serializable {
 
-    constructor() : this("", "", "", "", "", 0, "","","","",0.0f,0.0f,"",0,false,"")
+    constructor() : this("", "firstName", "lastName", true, "first.last@gmail.com", 9435266443, "12:00","13:00","Ahmedabad","08/08/1998",5f,60f,"annual",8000,false,"admin")
 }

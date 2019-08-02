@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sa.gym.R
 import com.sa.gym.model.UserItem
-import kotlinx.android.synthetic.main.custom_view.view.*
+import kotlinx.android.synthetic.main.list_custom_user.view.*
 
-class RecyclerViewAdapter(val userItem: List<UserItem>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+
+class RecyclerViewAdapter(private val userItem: List<UserItem>) :
+    RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.custom_view, parent, false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.list_custom_user, parent, false)
         return ViewHolder(view)
     }
 
@@ -19,7 +21,7 @@ class RecyclerViewAdapter(val userItem: List<UserItem>) : RecyclerView.Adapter<R
         holder.name.text = userItem[position].firstName
         holder.intime.text = userItem[position].inTime
         holder.outtime.text = userItem[position].outTime
-        if (userItem[position].amount > 0)
+        if (!userItem[position].paymentStatus)
             holder.due.setImageResource(R.drawable.reddot)
         else
             holder.due.setImageResource(R.drawable.greendot)
@@ -31,9 +33,9 @@ class RecyclerViewAdapter(val userItem: List<UserItem>) : RecyclerView.Adapter<R
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name = itemView.text_name
-        val intime = itemView.text_intime
-        val outtime = itemView.text_outtime
-        val due = itemView.view_due
+        val name = itemView.text_name!!
+        val intime = itemView.text_intime!!
+        val outtime = itemView.text_outtime!!
+        val due = itemView.view_due!!
     }
 }

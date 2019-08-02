@@ -6,10 +6,7 @@
             android:id="@+id/menu_set_reminder"
             android:icon="@android:drawable/ic_popup_reminder"
             android:title="@string/reminder"/>
-    <item
-            android:id="@+id/menu_cancel_reminder"
-            android:icon="@android:drawable/ic_delete"
-            android:title="@string/remove_reminder"/>
+
     <item
             android:id="@+id/menu_map"
             android:icon="@android:drawable/ic_dialog_map"

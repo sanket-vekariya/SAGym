@@ -7,23 +7,24 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.sa.gym.AlertDialog
 import com.sa.gym.R
 import kotlinx.android.synthetic.main.activity_dashboard.*
-import java.util.*
 
 
 class DashboardActivity : AppCompatActivity() {
 
+    //Bottom navigation items selection
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_home -> {
+            R.id.navigation_dashboard -> {
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.container_dashboard, DashboardFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_list_user -> {
                 val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.container_dashboard, SampleFragment()).commit()
+                transaction.replace(R.id.container_dashboard, UserListFragment()).commit()
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -36,24 +37,25 @@ class DashboardActivity : AppCompatActivity() {
         toolbar.title = FirebaseAuth.getInstance().currentUser?.email.toString()
         setSupportActionBar(toolbar)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        navigation.selectedItemId = R.id.navigation_home
+        navigation.selectedItemId = R.id.navigation_dashboard
+
 
         fab_add_user.setOnClickListener {
-            startActivity(Intent(this, UserActivity::class.java))
+            startActivity(Intent(this, AddUserActivity::class.java))
         }
     }
 
+    //more options menu create
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
 
+    //more options selection navigation
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.menu_signout -> {
-                FirebaseAuth.getInstance().signOut()
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
+            R.id.menu_set_reminder -> {
+                DatePickerFragment().show(supportFragmentManager, "Date Picker Dialog Box")
                 return true
             }
             R.id.menu_map -> {
@@ -61,13 +63,9 @@ class DashboardActivity : AppCompatActivity() {
                 transaction.replace(R.id.container_dashboard, MapFragment()).commit()
                 return true
             }
-            R.id.menu_set_reminder -> {
-                DatePickerFragment().show(supportFragmentManager, "Date Picker Dialog Box")
-                return true
-            }
-            R.id.menu_cancel_reminder -> {
-//                val calendar : Calendar = Calendar.getInstance()
-//                TimePickerFragment().cancelAlarm(calendar)
+            R.id.menu_signout -> {
+                AlertDialog.newInstance(getString(R.string.really_want_to_signout))
+                    .show(supportFragmentManager, "alert dialog")
                 return true
             }
             else -> super.onOptionsItemSelected(item)

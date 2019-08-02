@@ -1,6 +1,5 @@
 package com.sa.gym.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,47 +9,33 @@ import com.sa.gym.model.UserItem
 
 class FirestoreViewModel : ViewModel() {
 
-    val TAG = "FIRESTORE_VIEW_MODEL"
     var firebaseRepository = FirestoreRepository()
-    var savedAddresses: MutableLiveData<List<UserItem>> = MutableLiveData()
+    var savedUser: MutableLiveData<List<UserItem>> = MutableLiveData()
 
-    // save address to firebase
-    fun saveAddressToFirebase(addressItem: UserItem) {
-        firebaseRepository.saveAddressItem(addressItem).addOnFailureListener {
-            Log.e(TAG, "Failed to save Address!")
+    // save user to firebase
+    fun saveUserToFirebase(userItem: UserItem) {
+        firebaseRepository.saveUserItem(userItem).addOnFailureListener {
         }.addOnCompleteListener {
-            Log.e(TAG, "Save data Address Successfully!")
         }
     }
 
-    // get realtime updates from firebase regarding saved addresses
-    fun getSavedAddresses(): LiveData<List<UserItem>> {
-        firebaseRepository.getSavedAddress().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+    // get realtime updates from firebase regarding saved users
+    fun getUserData(): LiveData<List<UserItem>> {
+        firebaseRepository.getSavedUser().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
             if (e != null) {
-                Log.w(TAG, "Listen failed.", e)
-                savedAddresses.value = null
+                savedUser.value = null
                 return@EventListener
             }
 
-            var savedAddressList: MutableList<UserItem> = mutableListOf()
+            val savedUserList: MutableList<UserItem> = mutableListOf()
             for (doc in value!!) {
-                var addressItem = doc.toObject(UserItem::class.java)
-                savedAddressList.add(addressItem)
-                Log.e(TAG,"Load data successfully ${savedAddresses.value}")
+                val userItem = doc.toObject(UserItem::class.java)
+                savedUserList.add(userItem)
             }
-            savedAddresses.value = savedAddressList
+            savedUser.value = savedUserList
         })
 
-        return savedAddresses
-    }
-
-    // delete an address from firebase
-    fun deleteAddress(addressItem: UserItem) {
-        firebaseRepository.deleteAddress(addressItem).addOnFailureListener {
-            Log.e(TAG, "Failed to delete Address")
-        }.addOnCompleteListener {
-            Log.e(TAG, "Delete Address Success!")
-        }
+        return savedUser
     }
 
 }

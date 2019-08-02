@@ -1,36 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:dist="http://schemas.android.com/apk/distribution"
           xmlns:tools="http://schemas.android.com/tools"
           package="com.sa.gym">
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
+
     <uses-permission android:name="android.permission.INTERNET"/>
-
-    <uses-feature
-            android:name="android.hardware.ram.low"
-            android:required="true"/>
-
-    <dist:module dist:instant="true"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
-            android:name=".CustomApplication"
+            android:name=".CustomApplicationClass"
             android:allowBackup="false"
-            android:enabled="true"
             android:exported="false"
             android:hardwareAccelerated="true"
-            android:icon="@mipmap/ic_launcher_round"
+            android:icon="@mipmap/ic_launcher_foreground"
             android:killAfterRestore="true"
             android:label="@string/app_name"
             android:resizeableActivity="false"
+            android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:targetSandboxVersion="2"
             android:theme="@style/AppTheme"
-            android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".view.AddUserActivity"
+                  android:configChanges="orientation|keyboard|screenSize"
+                  android:label=" Membership Details"
+                  android:theme="@style/Theme.MaterialComponents.Light.Dialog">
+        </activity>
 
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
@@ -41,13 +37,9 @@
                 android:configChanges="orientation|keyboard|screenSize"
                 android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
                 <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.MONKEY"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
-
-                <data android:scheme="@string/fb_login_protocol_scheme"/>
             </intent-filter>
         </activity>
         <activity
@@ -55,31 +47,12 @@
                 android:configChanges="orientation|keyboard|screenSize"
                 android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         </activity>
-        <activity
-                android:name=".view.UserActivity"
-                android:configChanges="orientation|keyboard|screenSize"
-                android:label=" Membership Details"
-                android:theme="@style/Theme.MaterialComponents.Light.Dialog">
-        </activity>
+
         <activity
                 android:name=".view.MainActivity"
                 android:configChanges="orientation|keyboard|screenSize"
                 android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         </activity>
-
-        <receiver
-                android:name=".adapter.TaskManager"
-                android:enabled="true"
-                android:exported="false">
-            <intent-filter>
-                <action android:name="com.sa.gym.view.ReminderFragment"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </receiver>
-
-        <service android:name=".view.MyIntentService">
-        </service>
     </application>
 
 </manifest>

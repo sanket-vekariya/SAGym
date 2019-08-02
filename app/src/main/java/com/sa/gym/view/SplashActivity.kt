@@ -1,18 +1,25 @@
 package com.sa.gym.view
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
 import kotlinx.coroutines.Runnable
+import kotlin.system.exitProcess
 
 class SplashActivity : AppCompatActivity() {
 
     private var mDelayHandler: Handler? = null
     private val SPLASH_DELAY: Long = 2000
+    private var mInternetConnection: Boolean = false
+    private val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
@@ -27,16 +34,16 @@ class SplashActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 
+
     private val mRunnable: Runnable = Runnable {
-        if (FirebaseAuth.getInstance().currentUser != null && FirebaseAuth.getInstance().currentUser!!.isEmailVerified) {
+        if (currentFirebaseUser != null && currentFirebaseUser.isEmailVerified) {
             startActivity(Intent(applicationContext, DashboardActivity::class.java))
             finish()
         }
-        if (FirebaseAuth.getInstance().currentUser == null) {
+        if (currentFirebaseUser == null) {
             startActivity(Intent(applicationContext, MainActivity::class.java))
             finish()
         }
@@ -45,8 +52,46 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        //Internet Availability
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        mInternetConnection = activeNetworkInfo != null && activeNetworkInfo.isConnected
+    }
 
-        mDelayHandler = Handler()
-        mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
+    private fun internetDialogBox() {
+        val alert: AlertDialog
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        mInternetConnection = activeNetworkInfo != null && activeNetworkInfo.isConnected
+
+        if (!mInternetConnection) {
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage(getString(R.string.need_internet))
+                .setTitle(getString(R.string.unable_to_connect))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.settings)) { _, _ ->
+                    startActivityForResult(Intent(Settings.ACTION_SETTINGS), 0)
+                }
+                .setNegativeButton(getString(R.string.cancel)) { _, _ ->
+                    exitProcess(0)
+                }
+                .setRecycleOnMeasureEnabled(true)
+
+            alert = builder.create()
+            alert.show()
+        } else {
+            mDelayHandler = Handler()
+            mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (!mInternetConnection) {
+            internetDialogBox()
+        } else {
+            mDelayHandler = Handler()
+            mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
+        }
     }
 }
