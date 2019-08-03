@@ -17,9 +17,9 @@ import kotlin.system.exitProcess
 class SplashActivity : AppCompatActivity() {
 
     private var mDelayHandler: Handler? = null
-    private val SPLASH_DELAY: Long = 2000
+    private val splashDelay: Long = 5000
     private var mInternetConnection: Boolean = false
-    private val currentFirebaseUser = FirebaseAuth.getInstance().currentUser
+    private val currentFireBaseUser = FirebaseAuth.getInstance().currentUser
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
@@ -39,11 +39,11 @@ class SplashActivity : AppCompatActivity() {
 
 
     private val mRunnable: Runnable = Runnable {
-        if (currentFirebaseUser != null && currentFirebaseUser.isEmailVerified) {
+        if (currentFireBaseUser != null && currentFireBaseUser.isEmailVerified) {
             startActivity(Intent(applicationContext, DashboardActivity::class.java))
             finish()
         }
-        if (currentFirebaseUser == null) {
+        if (currentFireBaseUser == null) {
             startActivity(Intent(applicationContext, MainActivity::class.java))
             finish()
         }
@@ -81,7 +81,7 @@ class SplashActivity : AppCompatActivity() {
             alert.show()
         } else {
             mDelayHandler = Handler()
-            mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
+            mDelayHandler!!.postDelayed(mRunnable, splashDelay)
         }
     }
 
@@ -91,7 +91,7 @@ class SplashActivity : AppCompatActivity() {
             internetDialogBox()
         } else {
             mDelayHandler = Handler()
-            mDelayHandler!!.postDelayed(mRunnable, SPLASH_DELAY)
+            mDelayHandler!!.postDelayed(mRunnable, splashDelay)
         }
     }
 }

@@ -2,7 +2,7 @@ package com.sa.gym.model
 
 import java.io.Serializable
 
-
+//Modal class as constructor
 class UserItem(
     var id: String,
     var firstName: String,
@@ -25,5 +25,6 @@ class UserItem(
     var addedBy: String
 ) : Serializable {
 
+    //default constructor
     constructor() : this("", "firstName", "lastName", true, "first.last@gmail.com", 9435266443, "12:00","13:00","Ahmedabad","08/08/1998",5f,60f,"annual",8000,false,"admin")
 }

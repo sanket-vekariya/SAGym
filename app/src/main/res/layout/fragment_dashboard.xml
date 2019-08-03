@@ -13,10 +13,10 @@
             app:cardElevation="2dp"
             android:id="@+id/card_total"
             app:cardMaxElevation="3dp"
-            android:layout_margin="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="8dp">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -58,17 +58,18 @@
             android:gravity="center"
             android:layout_width="match_parent"
             app:layout_constraintTop_toBottomOf="@id/card_total"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
         <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardElevation="2dp"
                 app:cardMaxElevation="3dp"
-                android:layout_margin="10dp"
-                android:layout_marginTop="8dp"
-                android:id="@+id/card_due_done"
                 android:layout_weight="0.5"
-                android:layout_marginStart="8dp">
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="8dp"
+                android:layout_margin="8dp">
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -85,19 +86,26 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         app:layout_constraintEnd_toEndOf="parent"/>
-
+                <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:contentDescription="@string/content_description"
+                        app:srcCompat="@drawable/greendot"
+                        app:layout_constraintTop_toTopOf="@+id/text_title_due_done"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_title_due_done"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintStart_toEndOf="@+id/text_title_due_done"/>
                 <TextView
                         android:id="@+id/text_member_due_done"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintTop_toBottomOf="@+id/text_title_due_done"
                         android:layout_marginStart="8dp"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginBottom="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginEnd="8dp" android:text="@string/zero"/>
+                        android:layout_marginEnd="8dp" android:text="@string/zero"
+                        android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/text_title_due_done"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -109,10 +117,8 @@
                 app:cardElevation="2dp"
                 app:cardMaxElevation="3dp"
                 android:layout_weight="0.5"
-                android:layout_margin="10dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:id="@+id/materialCardView">
+                android:id="@+id/materialCardView" android:layout_marginEnd="4dp" android:layout_marginStart="4dp"
+                android:layout_marginBottom="8dp" android:layout_margin="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -128,8 +134,17 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"/>
+
+                <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:contentDescription="@string/content_description"
+                        app:srcCompat="@drawable/reddot"
+                        app:layout_constraintTop_toTopOf="@+id/text_title_due_pending"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_title_due_pending"
+                        app:layout_constraintStart_toEndOf="@+id/text_title_due_pending"
+                        android:layout_marginStart="8dp"/>
 
                 <TextView
                         android:id="@+id/text_member_due_pending"
@@ -142,14 +157,13 @@
                         android:layout_marginBottom="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginEnd="8dp" android:text="@string/zero"/>
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/zero"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
-
-
 
 
     <LinearLayout
@@ -164,10 +178,11 @@
                 android:layout_height="wrap_content"
                 app:cardElevation="2dp"
                 app:cardMaxElevation="3dp"
-                android:layout_margin="10dp"
-                android:layout_marginTop="8dp"
                 android:layout_weight="0.5"
-                android:layout_marginStart="8dp">
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="8dp"
+                android:layout_margin="8dp">
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -181,10 +196,18 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginStart="8dp"
+                        android:text="@string/active"
                         android:layout_marginEnd="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:text="@string/active"/>
-
+                        app:layout_constraintEnd_toEndOf="parent"/>
+                <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:contentDescription="@string/content_description"
+                        app:layout_constraintTop_toTopOf="@+id/text_title_active"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_title_active"
+                        app:layout_constraintStart_toEndOf="@+id/text_title_active"
+                        android:layout_marginStart="8dp"
+                        app:srcCompat="@drawable/greendot"/>
                 <TextView
                         android:id="@+id/text_member_active"
                         android:layout_width="wrap_content"
@@ -196,7 +219,8 @@
                         android:layout_marginBottom="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginEnd="8dp" android:text="@string/zero"/>
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/zero"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -208,9 +232,8 @@
                 app:cardElevation="2dp"
                 app:cardMaxElevation="3dp"
                 android:layout_weight="0.5"
-                android:layout_margin="10dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginEnd="4dp" android:layout_marginStart="4dp" android:layout_marginBottom="8dp"
+                android:layout_margin="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -228,7 +251,15 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         app:layout_constraintEnd_toEndOf="parent"/>
-
+                <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:contentDescription="@string/content_description"
+                        app:srcCompat="@drawable/reddot"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_title_inactive"
+                        app:layout_constraintTop_toTopOf="@+id/text_title_inactive"
+                        app:layout_constraintStart_toEndOf="@+id/text_title_inactive"
+                        android:layout_marginStart="8dp"/>
                 <TextView
                         android:id="@+id/text_member_inactive"
                         android:layout_width="wrap_content"
@@ -240,7 +271,8 @@
                         android:layout_marginBottom="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginEnd="8dp" android:text="@string/zero"/>
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/zero"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

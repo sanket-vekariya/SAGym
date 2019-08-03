@@ -12,8 +12,8 @@ class FirestoreViewModel : ViewModel() {
     var firebaseRepository = FirestoreRepository()
     var savedUser: MutableLiveData<List<UserItem>> = MutableLiveData()
 
-    // save user to firebase
-    fun saveUserToFirebase(userItem: UserItem) {
+    // save user to fireBase
+    fun saveUserToFireBase(userItem: UserItem) {
         firebaseRepository.saveUserItem(userItem).addOnFailureListener {
         }.addOnCompleteListener {
         }

@@ -13,6 +13,7 @@ import java.util.*
 
 class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
+    //on date set time picker dialog open with passing value to it with bundle
     @SuppressLint("CommitPrefEdits")
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         val editor: SharedPreferences.Editor =

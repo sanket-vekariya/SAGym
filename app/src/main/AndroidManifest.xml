@@ -22,9 +22,11 @@
             android:targetSandboxVersion="2"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+
         <activity android:name=".view.AddUserActivity"
                   android:configChanges="orientation|keyboard|screenSize"
                   android:label=" Membership Details"
+                  android:windowSoftInputMode="adjustResize"
                   android:theme="@style/Theme.MaterialComponents.Light.Dialog">
         </activity>
 

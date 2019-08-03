@@ -13,70 +13,15 @@
           "package_name": "com.sa.gym"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "278195569465-u85u78nvtboemmjl4m7vdu6vptv66or9.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.sa.gym",
-            "certificate_hash": "4bb5ba56463799164878b4b9a40c446652f33419"
-          }
-        },
-        {
-          "client_id": "278195569465-o8csnf0dqij18uu99tgu7v5d92kmstcg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD2ervw7I7Y75kXgI1HngP6r-l9dCD0-zM"
+          "current_key": "AIzaSyAj1R2wFNZfKraFy-Y0Yj747JJY4ipzYp0"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "278195569465-o8csnf0dqij18uu99tgu7v5d92kmstcg.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:278195569465:android:e378ec06ebb982f5",
-        "android_client_info": {
-          "package_name": "s.firebasesample"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "278195569465-t6u01s0gvtn9k8igio5n8mpc2gpui157.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "s.firebasesample",
-            "certificate_hash": "4bb5ba56463799164878b4b9a40c446652f33419"
-          }
-        },
-        {
-          "client_id": "278195569465-o8csnf0dqij18uu99tgu7v5d92kmstcg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyD2ervw7I7Y75kXgI1HngP6r-l9dCD0-zM"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "278195569465-o8csnf0dqij18uu99tgu7v5d92kmstcg.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

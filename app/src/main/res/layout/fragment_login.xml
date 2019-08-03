@@ -72,8 +72,10 @@
                 app:passwordToggleEnabled="true"
                 app:layout_constraintTop_toBottomOf="@id/emailLoginTextInputLayout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="40dp"
-                android:layout_marginStart="40dp" android:layout_marginTop="16dp">
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_password_login"
@@ -122,7 +124,8 @@
                 android:elevation="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/text_forgetpassword"
-                app:layout_constraintBottom_toBottomOf="@+id/text_forgetpassword" android:layout_marginEnd="40dp"/>
+                app:layout_constraintBottom_toBottomOf="@+id/text_forgetpassword"
+                android:layout_marginEnd="40dp"/>
         <TextView
                 android:text="@string/forget_password"
                 android:layout_width="wrap_content"
@@ -135,7 +138,8 @@
                 android:focusable="true"
                 android:layout_marginStart="40dp"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/button_login"/>
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/button_login"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

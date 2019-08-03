@@ -2,8 +2,6 @@
     <string name="app_name">SA Gym</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="facebook_app_id">2741786625855540</string>
-    <string name="fb_login_protocol_scheme">fb2741786625855540</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_dashboard">Dashboard</string>
@@ -63,6 +61,9 @@
     <string name="reminder_set_successfully">Reminder Set Successfully</string>
     <string name="failed_to_set_reminder">Failed to set Reminder</string>
     <string name="really_want_to_signout">Really Want to Sign-Out ?</string>
+    <string name="yes">Yes</string>
+    <string name="default_web_client_id">278195569465-ki6t45flus1jek64hvj6ivafpu78n8ai.apps.googleusercontent.com
+    </string>
 
     <string-array name="filter">
         <item>ALL</item>

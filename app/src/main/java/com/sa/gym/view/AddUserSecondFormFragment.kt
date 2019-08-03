@@ -43,7 +43,7 @@ class AddUserSecondFormFragment : Fragment() {
 
         //button click user add on cloud
         button_add.setOnClickListener {
-            firestoreViewModel.saveUserToFirebase(
+            firestoreViewModel.saveUserToFireBase(
                 UserItem(
                     id,
                     firstName, lastName, active, email, contact, intime, outtime, address, dob,

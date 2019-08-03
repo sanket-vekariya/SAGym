@@ -21,7 +21,7 @@ class ForgetPasswordFragment : Fragment() {
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_forget_password, container, false)
         view.button_forget_password.setOnClickListener {
-            if (edit_email_forget_password.text.toString().isNullOrEmpty())
+            if (edit_email_forget_password.text.toString().isEmpty())
                 edit_email_forget_password.error = "insert email first"
             else
                 forgetPassword(view.edit_email_forget_password.text.toString())
@@ -29,6 +29,7 @@ class ForgetPasswordFragment : Fragment() {
         return view
     }
 
+    //forgot password method
     private fun forgetPassword(email: String) {
         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->

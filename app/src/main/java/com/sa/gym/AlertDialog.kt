@@ -11,7 +11,7 @@ class AlertDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
         android.app.AlertDialog.Builder(activity)
             .setMessage(arguments?.getString(ALERT_MESSAGE))
-            .setPositiveButton(android.R.string.ok) { _, _ ->
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
                 FirebaseAuth.getInstance().signOut()
                 startActivity(Intent(context, MainActivity::class.java))
                 activity?.finish()

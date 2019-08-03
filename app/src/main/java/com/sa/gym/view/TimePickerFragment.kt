@@ -66,7 +66,7 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
         val targetFormat = SimpleDateFormat("yyyy,MM,dd,HH,mm")
         val date: Date
         try {
-            date = originalFormat.parse(startDate)
+            date = originalFormat.parse(startDate) as Date
             stDate = targetFormat.format(date)
 
         } catch (ex: ParseException) {

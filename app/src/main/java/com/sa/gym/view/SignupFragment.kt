@@ -15,9 +15,6 @@ import kotlinx.android.synthetic.main.fragment_signup.*
 
 class SignupFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = SignupFragment()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,27 +33,25 @@ class SignupFragment : Fragment() {
             val email = edit_email_signup.text.toString()
             val password = edit_password_signup.text.toString()
 
-            if (edit_email_signup.text.toString().isNullOrEmpty())
-                edit_email_signup.error = "insert email first"
-            else if (edit_password_signup.text.toString().isNullOrEmpty())
-                edit_password_signup.error = "insert password first"
-            else {
-                //create user with email and password
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            val transaction = requireFragmentManager().beginTransaction()
-                            transaction.replace(R.id.container, LoginFragment()).commit()
-                            emailValidation()
-                        } else {
-                            edit_email_signup.error = "insert email properly"
+            when {
+                edit_email_signup.text.toString().isEmpty() -> edit_email_signup.error = "insert email first"
+                edit_password_signup.text.toString().isEmpty() -> edit_password_signup.error = "insert password first"
+                else -> //create user with email and password
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val transaction = requireFragmentManager().beginTransaction()
+                                transaction.replace(R.id.container, LoginFragment()).commit()
+                                emailValidation()
+                            } else {
+                                edit_email_signup.error = "insert email properly"
+                            }
                         }
-                    }
             }
         }
 
     }
-    fun emailValidation() {
+    private fun emailValidation() {
         FirebaseAuth.getInstance().currentUser?.sendEmailVerification()
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {

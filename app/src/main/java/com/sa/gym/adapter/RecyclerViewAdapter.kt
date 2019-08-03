@@ -16,7 +16,6 @@ class RecyclerViewAdapter(private val userItem: List<UserItem>) :
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.list_custom_user, parent, false)
         return ViewHolder(view)
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.name.text = userItem[position].firstName
         holder.intime.text = userItem[position].inTime
@@ -32,6 +31,7 @@ class RecyclerViewAdapter(private val userItem: List<UserItem>) :
     }
 
 
+    //view holder class
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name = itemView.text_name!!
         val intime = itemView.text_intime!!

@@ -21,6 +21,7 @@ class DashboardFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //for live change sense
         FirestoreRepository().getSavedUser()
             .addSnapshotListener { value, _ ->
                 count = value?.count().toString()
@@ -57,8 +58,8 @@ class DashboardFragment : Fragment() {
                     totalDoc += task.result!!.count()
                 }
             }
+            //update view
             try {
-
                 total = sqrt(totalDoc.toDouble()).toLong()
                 text_member_count.setText(total.toString(), TextView.BufferType.EDITABLE)
                 text_member_due_pending.text = totalPending.toString()

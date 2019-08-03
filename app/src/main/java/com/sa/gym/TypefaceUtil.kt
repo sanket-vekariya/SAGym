@@ -5,7 +5,6 @@ import android.graphics.Typeface
 import android.os.Build
 import android.util.Log
 
-
 object TypefaceUtil {
 
     fun overrideFont(context: Context, defaultFontNameToOverride: String, customFontFileNameInAssets: String) {

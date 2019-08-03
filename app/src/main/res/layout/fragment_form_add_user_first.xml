@@ -184,7 +184,7 @@
                     android:layout_width="match_parent"
                     android:lines="4"
                     android:singleLine="true"
-                    android:minLines="1"
+                    android:minLines="2"
                     android:layout_height="wrap_content"
                     android:hint="@string/address"
                     android:drawablePadding="8dp"
