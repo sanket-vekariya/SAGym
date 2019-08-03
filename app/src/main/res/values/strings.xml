@@ -64,6 +64,8 @@
     <string name="yes">Yes</string>
     <string name="default_web_client_id">278195569465-ki6t45flus1jek64hvj6ivafpu78n8ai.apps.googleusercontent.com
     </string>
+    <string name="update_password">Update Password</string>
+    <string name="confirm_password">Enter Confirm Password</string>
 
     <string-array name="filter">
         <item>ALL</item>

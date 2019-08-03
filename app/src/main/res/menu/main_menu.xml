@@ -13,6 +13,11 @@
             android:title="@string/map"/>
 
     <item
+            android:id="@+id/menu_update_password"
+            android:icon="@android:drawable/ic_lock_idle_lock"
+            android:title="@string/update_password"/>
+
+    <item
             android:id="@+id/menu_signout"
             android:icon="@android:drawable/ic_dialog_alert"
             android:title="@string/signout"/>

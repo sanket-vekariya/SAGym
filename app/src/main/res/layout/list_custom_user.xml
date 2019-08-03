@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/small_8"
         app:cardElevation="2dp"
         app:cardMaxElevation="3dp">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,12 +17,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:text="test user name"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/medium_16"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.25"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/medium_16"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="@dimen/medium_16"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
@@ -30,12 +30,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:text="test in time"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/medium_16"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.25"
                 app:layout_constraintStart_toEndOf="@+id/text_name"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="@dimen/small_8"
+                android:layout_marginBottom="@dimen/medium_16"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
@@ -43,27 +43,27 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 tools:text="test out time"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/medium_16"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.25"
                 app:layout_constraintStart_toEndOf="@+id/text_intime"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="@dimen/small_8"
+                android:layout_marginBottom="@dimen/medium_16"
                 app:layout_constraintBottom_toBottomOf="parent"/>
         <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:layout_width="@dimen/elevation_medium_10"
+                android:layout_height="@dimen/elevation_medium_10"
                 android:id="@+id/view_due"
                 android:background="@android:drawable/ic_media_ff"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/medium_16"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="@dimen/medium_16"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="@dimen/small_8"
                 android:contentDescription="@string/content_description"
                 app:layout_constraintStart_toEndOf="@+id/text_outtime"
-                android:layout_marginStart="8dp">
+                android:layout_marginStart="@dimen/small_8">
 
         </ImageView>
 

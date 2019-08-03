@@ -15,7 +15,7 @@
             app:layout_constraintTop_toTopOf="parent"
             style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
             android:layout_width="match_parent"
-            android:elevation="5dp"
+            android:elevation="@dimen/elevation_small_5"
             app:layout_scrollFlags="scroll|enterAlways"
             android:layout_height="wrap_content"/>
 
@@ -46,10 +46,11 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@+id/navigation"
             app:layout_constraintStart_toStartOf="@+id/navigation"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginStart="@dimen/small_8"
+            android:layout_marginBottom="@dimen/large_24"
             android:src="@android:drawable/ic_input_add"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:elevation="10dp" android:id="@+id/fab_add_user"/>
+            app:elevation="@dimen/elevation_medium_10"
+            android:id="@+id/fab_add_user"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,31 +15,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/text_fix_filter"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="@dimen/elevation_medium_10"
+                android:layout_marginTop="@dimen/elevation_small_5"
                 android:textColor="@color/colorAccent"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="@dimen/elevation_small_5"
                 android:textStyle="bold"/>
         <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/spinner"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginBottom="@dimen/elevation_small_5"
+                android:layout_marginTop="@dimen/elevation_small_5"
                 android:entries="@array/filter"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="10dp" style="@android:style/Widget.Material.Spinner"
-                android:spinnerMode="dialog" android:overScrollMode="ifContentScrolls"
+                android:layout_marginStart="@dimen/elevation_small_5"
+                android:layout_marginEnd="@dimen/elevation_medium_10" 
+                style="@android:style/Widget.Material.Spinner"
+                android:spinnerMode="dialog" 
+                android:overScrollMode="ifContentScrolls"
                 android:layoutMode="opticalBounds"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp">
+            android:layout_marginStart="@dimen/elevation_medium_10"
+            android:layout_marginEnd="@dimen/elevation_medium_10"
+            android:layout_marginBottom="@dimen/elevation_small_5"
+            android:layout_marginTop="@dimen/elevation_small_5">
         <TextView
                 android:text="@string/name"
                 android:layout_width="wrap_content"
@@ -83,7 +85,7 @@
                 android:id="@+id/testRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/medium_16"
                 android:scrollbars="vertical"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

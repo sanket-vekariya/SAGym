@@ -11,6 +11,6 @@
             android:id="@+id/navigation_list_user"
             android:icon="@drawable/ic_dashboard_black_24dp"
             android:title="@string/title_list_user"
-            app:showAsAction="always"/>
+            app:showAsAction="ifRoom"/>
 
 </menu>

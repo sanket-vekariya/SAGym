@@ -63,6 +63,11 @@ class DashboardActivity : AppCompatActivity() {
                 transaction.replace(R.id.container_dashboard, MapFragment()).commit()
                 return true
             }
+            R.id.menu_update_password -> {
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.container_dashboard, UpdatePasswordFragment()).commit()
+                return true
+            }
             R.id.menu_signout -> {
                 AlertDialog.newInstance(getString(R.string.really_want_to_signout))
                     .show(supportFragmentManager, "alert dialog")
