@@ -1,6 +1,7 @@
 package com.sa.gym.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,11 @@ import com.sa.gym.model.UserItem
 import com.sa.gym.viewModel.FireStoreRepository
 import com.sa.gym.viewModel.FireStoreViewModel
 import kotlinx.android.synthetic.main.fragment_user_list.*
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.RecyclerView
+import android.widget.AbsListView
+
+
 
 
 class UserListFragment : Fragment() {
@@ -23,7 +29,7 @@ class UserListFragment : Fragment() {
     private var mAdapter: RecyclerViewAdapter? = null
     private var m1Adapter: RecyclerViewAdapter? = null
     private val savedUserList: MutableList<UserItem> = mutableListOf()
-
+    private var userScrolled = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +39,7 @@ class UserListFragment : Fragment() {
         fireStoreViewModel.getUserData().observe(this, Observer {
             testRecyclerView.layoutManager = LinearLayoutManager(context)
             mAdapter = RecyclerViewAdapter(it)
+            testRecyclerView.itemAnimator = DefaultItemAnimator()
             testRecyclerView.adapter = mAdapter
         })
 

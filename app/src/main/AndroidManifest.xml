@@ -22,6 +22,7 @@
             android:allowBackup="false"
             android:exported="false"
             android:hardwareAccelerated="true"
+            android:banner="@mipmap/ic_launcher_round"
             android:icon="@mipmap/ic_launcher_foreground"
             android:killAfterRestore="true"
             android:label="@string/app_name"
