@@ -18,7 +18,7 @@
 
     <application
             android:usesCleartextTraffic="true"
-            android:name=".utils.CustomApplicationClass"
+            android:name="com.sa.gym.view.utils.CustomApplicationClass"
             android:allowBackup="false"
             android:exported="false"
             android:hardwareAccelerated="true"

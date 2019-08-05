@@ -9,7 +9,8 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:gravity="center">
+            android:layout_height="wrap_content"
+            android:gravity="center">
         <TextView
                 android:text="@string/filter_by"
                 android:layout_width="wrap_content"
@@ -20,7 +21,7 @@
                 android:textColor="@color/colorAccent"
                 android:layout_marginBottom="@dimen/elevation_small_5"
                 android:textStyle="bold"/>
-        <Spinner
+        <androidx.appcompat.widget.AppCompatSpinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/spinner"
@@ -28,54 +29,100 @@
                 android:layout_marginTop="@dimen/elevation_small_5"
                 android:entries="@array/filter"
                 android:layout_marginStart="@dimen/elevation_small_5"
-                android:layout_marginEnd="@dimen/elevation_medium_10" 
+                android:layout_marginEnd="@dimen/elevation_medium_10"
                 style="@android:style/Widget.Material.Spinner"
-                android:spinnerMode="dialog" 
+                android:spinnerMode="dialog"
                 android:overScrollMode="ifContentScrolls"
                 android:layoutMode="opticalBounds"/>
     </LinearLayout>
+
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/elevation_medium_10"
-            android:layout_marginEnd="@dimen/elevation_medium_10"
-            android:layout_marginBottom="@dimen/elevation_small_5"
+            android:layout_marginBottom="@dimen/elevation_medium_10"
             android:layout_marginTop="@dimen/elevation_small_5">
-        <TextView
-                android:text="@string/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_fix_name"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textStyle="bold"/>
-        <TextView
-                android:text="@string/in_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_fix_in_time"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@android:color/holo_green_light"
-                android:textStyle="bold"/>
-        <TextView
-                android:text="@string/out_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_fix_out_time"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@android:color/holo_red_light"
-                android:textStyle="bold"/>
-        <TextView
-                android:text="@string/due"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/text_fix_due"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textStyle="bold"/>
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:gravity="center"
+                      android:layout_weight="1">
+            <TextView
+                    android:text="@string/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_fix_name"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+
+            <ImageView
+                    android:layout_marginStart="@dimen/small_8"
+                    android:layout_width="15dp"
+                       android:layout_height="15dp"
+                       android:id="@+id/image_name"
+                       android:layout_gravity="center"
+                       android:src="@android:drawable/arrow_up_float"/>
+        </LinearLayout>
+
+
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:gravity="center"
+                      android:layout_weight="1">
+
+            <TextView
+                    android:text="@string/in_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_fix_in_time"
+                    android:gravity="center"
+                    android:textColor="@android:color/holo_green_light"
+                    android:textStyle="bold"/>
+
+            <ImageView android:layout_marginStart="@dimen/small_8"
+                       android:layout_width="15dp"
+                       android:layout_height="15dp"
+                       android:id="@+id/image_in_time"
+                       android:layout_gravity="center"
+                       android:src="@android:drawable/arrow_up_float"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:gravity="center"
+                      android:layout_weight="1">
+            <TextView
+                    android:text="@string/out_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_fix_out_time"
+                    android:gravity="center"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textStyle="bold"/>
+            <ImageView android:layout_marginStart="@dimen/small_8"
+                       android:layout_width="15dp"
+                       android:layout_height="15dp"
+                       android:id="@+id/image_out_time"
+                       android:layout_gravity="center"
+                       android:src="@android:drawable/arrow_up_float"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:gravity="center"
+                      android:layout_weight="1">
+            <TextView
+                    android:text="@string/due"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_fix_due"
+                    android:gravity="center"
+                    android:textStyle="bold"/>
+            <ImageView android:layout_marginStart="@dimen/small_8"
+                       android:layout_width="15dp"
+                       android:layout_height="15dp"
+                       android:id="@+id/image_due"
+                       android:layout_gravity="center"
+                       android:src="@android:drawable/arrow_up_float"/>
+        </LinearLayout>
+
     </LinearLayout>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/testSwipeRefreshLayout"

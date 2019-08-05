@@ -85,4 +85,11 @@
         <item>December</item>
     </string-array>
 
+    <string-array name="membership_type">
+        <item>yearly</item>
+        <item>monthly</item>
+        <item>quarterly</item>
+        <item>half-yearly</item>
+    </string-array>
+
 </resources>

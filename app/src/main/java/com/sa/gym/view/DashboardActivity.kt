@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
-import com.sa.gym.utils.AlertDialog
+import com.sa.gym.view.utils.AlertDialog
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 

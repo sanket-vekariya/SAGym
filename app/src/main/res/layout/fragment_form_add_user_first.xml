@@ -93,35 +93,6 @@
                 android:layout_marginTop="@dimen/small_8">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_active"
-                    android:layout_width="match_parent"
-                    android:singleLine="true"
-                    android:maxLines="1"
-                    android:minLines="1"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/active"
-                    android:drawablePadding="@dimen/small_8"
-                    android:inputType="textPersonName"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxStrokeColor="@android:color/darker_gray"
-                app:boxStrokeWidth="2dp"
-                app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
-                app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
-                app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
-                app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="@dimen/small_8"
-                android:layout_marginStart="@dimen/small_8"
-                android:layout_marginTop="@dimen/small_8">
-
-            <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_email"
                     android:layout_width="match_parent"
                     android:singleLine="true"
@@ -204,6 +175,7 @@
                     android:layout_height="wrap_content"
                     app:boxStrokeColor="@android:color/darker_gray"
                     app:boxStrokeWidth="2dp"
+                    android:id="@+id/edit_dob_inputlayout"
                     app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
                     app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
                     app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
@@ -220,6 +192,7 @@
                         android:layout_width="match_parent"
                         android:singleLine="true"
                         android:maxLines="1"
+                        android:focusable="false"
                         android:minLines="1"
                         android:layout_height="wrap_content"
                         android:hint="@string/date_of_birth"
@@ -249,6 +222,7 @@
                         android:layout_width="match_parent"
                         android:singleLine="true"
                         android:maxLines="1"
+                        android:focusable="false"
                         android:minLines="1"
                         android:layout_height="wrap_content"
                         android:hint="@string/in_time"
@@ -256,6 +230,7 @@
                         android:inputType="time"/>
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
@@ -278,6 +253,7 @@
                         android:layout_width="match_parent"
                         android:singleLine="true"
                         android:maxLines="1"
+                        android:focusable="false"
                         android:minLines="1"
                         android:layout_height="wrap_content"
                         android:hint="@string/out_time"

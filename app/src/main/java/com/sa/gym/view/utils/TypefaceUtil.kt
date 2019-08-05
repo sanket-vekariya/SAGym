@@ -1,4 +1,4 @@
-package com.sa.gym.utils
+package com.sa.gym.view.utils
 
 import android.content.Context
 import android.graphics.Typeface

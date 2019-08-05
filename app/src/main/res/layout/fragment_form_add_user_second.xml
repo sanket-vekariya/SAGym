@@ -14,7 +14,6 @@
             android:layout_height="wrap_content"
             android:padding="20dp">
 
-
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -78,33 +77,19 @@
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        <androidx.appcompat.widget.AppCompatSpinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxStrokeColor="@android:color/darker_gray"
-                app:boxStrokeWidth="2dp"
-                app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
-                app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
-                app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
-                app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/spinner_membership_type"
+                android:layout_marginBottom="@dimen/elevation_small_5"
+                android:layout_marginTop="@dimen/medium_16"
+                android:entries="@array/membership_type"
                 android:layout_marginStart="@dimen/small_8"
-                android:layout_marginTop="@dimen/small_8" android:layout_marginEnd="@dimen/small_8">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_membership_type"
-                    android:layout_width="match_parent"
-                    android:singleLine="true"
-                    android:maxLines="1"
-                    android:minLines="1"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/membership_type"
-                    android:drawablePadding="@dimen/small_8"
-                    android:inputType="text"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginEnd="@dimen/small_8"
+                style="@android:style/Widget.Material.Spinner"
+                android:spinnerMode="dialog"
+                android:overScrollMode="ifContentScrolls"
+                android:layoutMode="opticalBounds"/>
 
         <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -135,41 +120,43 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginEnd="@dimen/small_8"
+                      android:layout_marginStart="@dimen/small_8"
+                      android:layout_marginTop="@dimen/small_8">
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_payment_status"
+                    android:text="@string/payment_status"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/very_small_4"
+                    android:switchPadding="@dimen/extra_large_40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_active"
+                    android:layout_weight="2"
+                    android:text="@string/active"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="@dimen/very_small_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
         <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:boxStrokeColor="@android:color/darker_gray"
                 app:boxStrokeWidth="2dp"
-                app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
-                app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
-                app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
-                app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="@dimen/small_8"
-                android:layout_marginStart="@dimen/small_8"
-                android:layout_marginTop="@dimen/small_8">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_payment_status"
-                    android:layout_width="match_parent"
-                    android:singleLine="true"
-                    android:maxLines="1"
-                    android:minLines="1"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/payment_status"
-                    android:drawablePadding="@dimen/small_8"
-                    android:inputType="text"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxStrokeColor="@android:color/darker_gray"
-                app:boxStrokeWidth="2dp"
+                android:clickable="false"
+                android:focusableInTouchMode="false"
+                android:focusable="false"
                 app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
                 app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
                 app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
@@ -185,6 +172,10 @@
                     android:layout_width="match_parent"
                     android:singleLine="true"
                     android:maxLines="1"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:filterTouchesWhenObscured="false"
+                    android:clickable="false"
                     android:minLines="1"
                     android:layout_height="wrap_content"
                     android:hint="@string/added_by"

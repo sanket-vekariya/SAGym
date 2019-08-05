@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sa.gym.R
 import com.sa.gym.model.UserItem
@@ -34,7 +35,6 @@ class AddUserSecondFormFragment : Fragment() {
         val mBundle: Bundle? = arguments
         val firstName: String = mBundle?.getString("firstName", "firstName") as String
         val lastName: String = mBundle.getString("lastName", "lastName") as String
-        val active: Boolean = mBundle.getBoolean("active", false)
         val email: String = mBundle.getString("email", "name@gmail.com") as String
         val contact: Long = mBundle.getLong("contact", 9512373997)
         val inTime: String = mBundle.getString("intime", "09:30") as String
@@ -42,22 +42,31 @@ class AddUserSecondFormFragment : Fragment() {
         val dob: String = mBundle.getString("dob", "08/08/1998") as String
         val address: String = mBundle.getString("address", "Ahmedabad") as String
 
+        edit_added_by.setText(FirebaseAuth.getInstance().currentUser?.email.toString())
+
         //button click user add on cloud
         button_add.setOnClickListener {
-            fireStoreViewModel.saveUserToFireBase(
-                UserItem(
-                    id,
-                    firstName, lastName, active, email, contact, inTime, outTime, address, dob,
-                    edit_height.text.toString().toFloat(),
-                    edit_weight.text.toString().toFloat(),
-                    edit_membership_type.text.toString(),
-                    edit_amount.text.toString().toInt(),
-                    edit_payment_status.text.toString().toBoolean(),
-                    edit_added_by.text.toString()
+            if (!edit_height.text.isNullOrEmpty() &&
+                !edit_weight.text.isNullOrEmpty() &&
+                !edit_amount.text.isNullOrEmpty()
+            ) {
+                fireStoreViewModel.saveUserToFireBase(
+                    UserItem(
+                        id,
+                        firstName, lastName, switch_active.isChecked, email, contact, inTime, outTime, address, dob,
+                        edit_height.text.toString().toFloat(),
+                        edit_weight.text.toString().toFloat(),
+                        spinner_membership_type.selectedItem.toString(),
+                        edit_amount.text.toString().toInt(),
+                        switch_payment_status.isChecked,
+                        FirebaseAuth.getInstance().currentUser?.email.toString()
+                    )
                 )
-            )
-            Toast.makeText(context, getString(R.string.user_added_successfully), Toast.LENGTH_SHORT).show()
-            activity?.finish()
+                Toast.makeText(context, getString(R.string.user_added_successfully), Toast.LENGTH_SHORT).show()
+                activity?.finish()
+            } else {
+                Toast.makeText(context, getString(R.string.insert_all_the_data_first), Toast.LENGTH_SHORT).show()
+            }
         }
 
         //back button
