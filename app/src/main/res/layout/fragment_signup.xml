@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".view.SignupFragment">
+        tools:context=".view.SignUpFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -16,7 +16,7 @@
                 android:src="@mipmap/ic_launcher_foreground"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView_signup"
+                android:id="@+id/imageView_sign_up"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="@dimen/small_8"
                 app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
         <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:id="@+id/emailSignupTextInputLayout"
+                android:id="@+id/emailSignUpTextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:boxStrokeColor="@android:color/darker_gray"
@@ -39,10 +39,10 @@
                 android:layout_marginLeft="@dimen/extra_large_40"
                 android:layout_marginRight="@dimen/extra_large_40"
                 android:layout_marginTop="@dimen/small_8"
-                app:layout_constraintTop_toBottomOf="@+id/imageView_signup">
+                app:layout_constraintTop_toBottomOf="@+id/imageView_sign_up">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_email_signup"
+                    android:id="@+id/edit_email_sign_up"
                     android:layout_width="match_parent"
                     android:singleLine="true"
                     android:maxLines="1"
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_your_email"
                     android:drawablePadding="@dimen/small_8"
-                    android:drawableStart="@drawable/username"
+                    android:drawableStart="@drawable/ic_user_name"
                     android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -58,7 +58,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:id="@+id/passwordSignupTextInputLayout"
+                android:id="@+id/passwordSignUpTextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:boxStrokeColor="@android:color/darker_gray"
@@ -68,7 +68,7 @@
                 app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
                 app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
                 app:passwordToggleEnabled="true"
-                app:layout_constraintTop_toBottomOf="@id/emailSignupTextInputLayout"
+                app:layout_constraintTop_toBottomOf="@id/emailSignUpTextInputLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginLeft="@dimen/extra_large_40"
@@ -76,7 +76,7 @@
                 android:layout_marginTop="@dimen/medium_16">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_password_signup"
+                    android:id="@+id/edit_password_sign_up"
                     android:layout_width="match_parent"
                     android:singleLine="true"
                     android:maxLines="1"
@@ -85,13 +85,13 @@
                     android:hint="@string/enter_your_password"
                     android:drawablePadding="@dimen/small_8"
                     app:passwordToggleEnabled="true"
-                    android:drawableStart="@drawable/password"
+                    android:drawableStart="@drawable/ic_password"
                     android:inputType="textPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_signup"
+                android:id="@+id/button_sign_up"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/sign_up"
@@ -103,7 +103,7 @@
                 app:strokeColor="@android:color/white"
                 app:strokeWidth="1dp"
                 app:cornerRadius="@dimen/elevation_small_5"
-                app:layout_constraintTop_toBottomOf="@id/passwordSignupTextInputLayout"
+                app:layout_constraintTop_toBottomOf="@id/passwordSignUpTextInputLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginLeft="@dimen/extra_large_40"

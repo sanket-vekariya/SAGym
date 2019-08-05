@@ -8,6 +8,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
+import com.sa.gym.R
 import java.util.*
 
 
@@ -23,7 +24,7 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
         editor.putInt("year", year)
         editor.apply()
         val frag = TimePickerFragment()
-        frag.show(requireFragmentManager(), "Time Picker Dialog Box")
+        frag.show(requireFragmentManager(), getString(R.string.time_picker_dialog_box))
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

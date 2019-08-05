@@ -7,8 +7,8 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.sa.gym.AlertDialog
 import com.sa.gym.R
+import com.sa.gym.utils.AlertDialog
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 
@@ -55,7 +55,7 @@ class DashboardActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_set_reminder -> {
-                DatePickerFragment().show(supportFragmentManager, "Date Picker Dialog Box")
+                DatePickerFragment().show(supportFragmentManager, getString(R.string.date_picker_dialog_box))
                 return true
             }
             R.id.menu_map -> {
@@ -68,7 +68,7 @@ class DashboardActivity : AppCompatActivity() {
                 transaction.replace(R.id.container_dashboard, UpdatePasswordFragment()).commit()
                 return true
             }
-            R.id.menu_signout -> {
+            R.id.menu_sign_out -> {
                 AlertDialog.newInstance(getString(R.string.really_want_to_signout))
                     .show(supportFragmentManager, "alert dialog")
                 return true

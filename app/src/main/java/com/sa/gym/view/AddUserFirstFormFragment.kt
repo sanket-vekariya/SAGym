@@ -23,31 +23,31 @@ class AddUserFirstFormFragment : Fragment() {
         val transaction = fragmentManager?.beginTransaction()
         //next button click pass data to next fragment with bundle
         button_next.setOnClickListener {
-            if (!edit_firstname.text.isNullOrEmpty() &&
-                !edit_lastname.text.isNullOrEmpty() &&
+            if (!edit_first_name.text.isNullOrEmpty() &&
+                !edit_last_name.text.isNullOrEmpty() &&
                 !edit_active.text.isNullOrEmpty() &&
                 !edit_email.text.isNullOrEmpty() &&
                 !edit_contact.text.isNullOrEmpty() &&
                 !edit_dob.text.isNullOrEmpty() &&
                 !edit_address.text.isNullOrEmpty() &&
-                !edit_intime.text.isNullOrEmpty() &&
-                !edit_outtime.text.isNullOrEmpty()
+                !edit_in_time.text.isNullOrEmpty() &&
+                !edit_out_time.text.isNullOrEmpty()
             ) {
                 bundle.putString("id", id)
-                bundle.putString("firstName", edit_firstname.text.toString())
-                bundle.putString("lastName", edit_lastname.text.toString())
+                bundle.putString("firstName", edit_first_name.text.toString())
+                bundle.putString("lastName", edit_last_name.text.toString())
                 bundle.putBoolean("active", edit_active.text.toString().toBoolean())
                 bundle.putString("email", edit_email.text.toString())
                 bundle.putLong("contact", edit_contact.text.toString().toLong())
-                bundle.putString("intime", edit_intime.text.toString())
-                bundle.putString("outtime", edit_outtime.text.toString())
+                bundle.putString("intime", edit_in_time.text.toString())
+                bundle.putString("outtime", edit_out_time.text.toString())
                 bundle.putString("dob", edit_dob.text.toString())
                 bundle.putString("address", edit_address.text.toString())
 
                 fragment.arguments = bundle
                 transaction!!.replace(R.id.container_activity_add_user, fragment).addToBackStack(null).commit()
             } else {
-                Toast.makeText(context, "Insert All The Data First", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.insert_all_the_data_first), Toast.LENGTH_SHORT).show()
             }
         }
     }

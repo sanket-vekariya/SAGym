@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.sa.gym.R
 import com.sa.gym.model.UserItem
-import com.sa.gym.viewModel.FirestoreRepository
+import com.sa.gym.viewModel.FireStoreRepository
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlin.math.sqrt
 
@@ -22,7 +22,7 @@ class DashboardFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //for live change sense
-        FirestoreRepository().getSavedUser()
+        FireStoreRepository().getSavedUser()
             .addSnapshotListener { value, _ ->
                 count = value?.count().toString()
                 customActive()
@@ -40,7 +40,7 @@ class DashboardFragment : Fragment() {
 
     //Query for Paid, Pending Due Amount
     private fun customQuery() {
-        FirestoreRepository().getSavedUser().get().addOnCompleteListener { task ->
+        FireStoreRepository().getSavedUser().get().addOnCompleteListener { task ->
             var totalPending: Long = 0
             var totalDone: Long = 0
             var totalDoc: Long = 0
@@ -72,7 +72,7 @@ class DashboardFragment : Fragment() {
 
     //Query for Active, Inactive Members
     private fun customActive() {
-        FirestoreRepository().getSavedUser().whereEqualTo("active", true).get().addOnCompleteListener { task ->
+        FireStoreRepository().getSavedUser().whereEqualTo("active", true).get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 var totalActive: Long = 0
 

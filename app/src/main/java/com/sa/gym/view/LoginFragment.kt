@@ -34,20 +34,20 @@ class LoginFragment : Fragment() {
             }
         }
 
-        //forget password
-        text_forgetpassword.setOnClickListener {
+        //forget ic_password
+        text_forget_password.setOnClickListener {
             val transaction = requireFragmentManager().beginTransaction()
             transaction.replace(R.id.container, ForgetPasswordFragment()).addToBackStack(null).commit()
         }
 
         //sign-up screen open
-        text_signup.setOnClickListener {
+        text_sign_up.setOnClickListener {
             val transaction = requireFragmentManager().beginTransaction()
-            transaction.replace(R.id.container, SignupFragment()).addToBackStack(null).commit()
+            transaction.replace(R.id.container, SignUpFragment()).addToBackStack(null).commit()
         }
     }
 
-    //login authentication with email and password
+    //login authentication with email and ic_password
     private fun authentication(email: String, password: String) {
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)

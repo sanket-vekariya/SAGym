@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
         <ImageView
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_your_email"
                     android:drawablePadding="@dimen/small_8"
-                    android:drawableStart="@drawable/username"
+                    android:drawableStart="@drawable/ic_user_name"
                     android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_your_password"
                     android:drawablePadding="@dimen/small_8"
-                    android:drawableStart="@drawable/password"
+                    android:drawableStart="@drawable/ic_password"
                     android:inputType="textPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -116,21 +116,21 @@
                 android:text="@string/sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_signup"
+                android:id="@+id/text_sign_up"
                 android:clickable="true"
                 android:textStyle="bold"
                 android:textColor="@android:color/holo_orange_dark"
                 android:focusable="true"
                 android:elevation="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/text_forgetpassword"
-                app:layout_constraintBottom_toBottomOf="@+id/text_forgetpassword"
+                app:layout_constraintTop_toTopOf="@+id/text_forget_password"
+                app:layout_constraintBottom_toBottomOf="@+id/text_forget_password"
                 android:layout_marginEnd="@dimen/extra_large_40"/>
         <TextView
                 android:text="@string/forget_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_forgetpassword"
+                android:id="@+id/text_forget_password"
                 android:clickable="true"
                 android:textStyle="bold"
                 android:textColor="@android:color/holo_orange_dark"

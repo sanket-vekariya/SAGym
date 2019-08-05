@@ -2,7 +2,6 @@ package com.sa.gym.view
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,28 +21,27 @@ class ForgetPasswordFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_forget_password, container, false)
         view.button_forget_password.setOnClickListener {
             if (edit_email_forget_password.text.toString().isEmpty())
-                edit_email_forget_password.error = "insert email first"
+                edit_email_forget_password.error = getString(R.string.insert_email_first)
             else
                 forgetPassword(view.edit_email_forget_password.text.toString())
         }
         return view
     }
 
-    //forgot password method
+    //forgot ic_password method
     private fun forgetPassword(email: String) {
         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(
                         context,
-                        "Check email to reset your password!",
+                        getString(R.string.check_your_email_to_reset_your_password),
                         Toast.LENGTH_SHORT
                     ).show()
                     val transaction = fragmentManager?.beginTransaction()
                     transaction?.replace(R.id.container, LoginFragment())?.commit()
-                    Log.d("main", "forget password button success")
                 } else {
-                    Toast.makeText(context, "Email not exist or Failed to send ", Toast.LENGTH_SHORT)
+                    Toast.makeText(context, getString(R.string.email_not_exist_or_failed_to_send), Toast.LENGTH_SHORT)
                         .show()
                 }
             }

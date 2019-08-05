@@ -1,10 +1,10 @@
-package com.sa.gym
+package com.sa.gym.utils
 
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Build
-import android.util.Log
 
+//Object supporting the font changing on custom application class
 object TypefaceUtil {
 
     fun overrideFont(context: Context, defaultFontNameToOverride: String, customFontFileNameInAssets: String) {
@@ -31,10 +31,6 @@ object TypefaceUtil {
                 defaultFontTypefaceField.isAccessible = true
                 defaultFontTypefaceField.set(null, customFontTypeface)
             } catch (e: Exception) {
-                Log.e(
-                    TypefaceUtil::class.java.simpleName,
-                    "Can not set custom font $customFontFileNameInAssets instead of $defaultFontNameToOverride"
-                )
             }
 
         }

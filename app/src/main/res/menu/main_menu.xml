@@ -18,7 +18,7 @@
             android:title="@string/update_password"/>
 
     <item
-            android:id="@+id/menu_signout"
+            android:id="@+id/menu_sign_out"
             android:icon="@android:drawable/ic_dialog_alert"
-            android:title="@string/signout"/>
+            android:title="@string/sign_out"/>
 </menu>

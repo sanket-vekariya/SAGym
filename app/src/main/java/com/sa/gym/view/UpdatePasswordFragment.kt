@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_update_password.*
 
 class UpdatePasswordFragment : DialogFragment() {
 
-    var mAuthPassword: FirebaseUser? = null
+    private var mAuthPassword: FirebaseUser? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,7 +27,7 @@ class UpdatePasswordFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         mAuthPassword = FirebaseAuth.getInstance().currentUser as FirebaseUser
 
-        //update password button
+        //update ic_password button
         button_password_update.setOnClickListener {
             val password = edit_password_update.text.toString().trim()
 
@@ -36,9 +36,10 @@ class UpdatePasswordFragment : DialogFragment() {
             } else {
                 mAuthPassword!!.updatePassword(password).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(context, "Password Reset Success!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, getString(R.string.password_reset_success), Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(context, "Fail to Reset Password!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, getString(R.string.fail_to_reset_password)
+                            , Toast.LENGTH_SHORT).show()
                     }
                 }
             }

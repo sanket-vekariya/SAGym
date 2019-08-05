@@ -46,9 +46,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
-                        val latlang = LatLng(document.get("lati") as Double, document.get("longi") as Double)
-                        builder.include(latlang)
-                        googleMap.addMarker(MarkerOptions().position(latlang).title(document.get("info") as String))
+                        val latLang = LatLng(document.get("lati") as Double, document.get("longi") as Double)
+                        builder.include(latLang)
+                        googleMap.addMarker(MarkerOptions().position(latLang).title(document.get("info") as String))
                     }
                     //for showing view only covering all the markers
                     val bounds = builder.build()

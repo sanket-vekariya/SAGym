@@ -7,21 +7,21 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
 import com.sa.gym.model.UserItem
 
-class FirestoreViewModel : ViewModel() {
+class FireStoreViewModel : ViewModel() {
 
-    var firebaseRepository = FirestoreRepository()
-    var savedUser: MutableLiveData<List<UserItem>> = MutableLiveData()
+    private var fireBaseRepository = FireStoreRepository()
+    private var savedUser: MutableLiveData<List<UserItem>> = MutableLiveData()
 
     // save user to fireBase
     fun saveUserToFireBase(userItem: UserItem) {
-        firebaseRepository.saveUserItem(userItem).addOnFailureListener {
+        fireBaseRepository.saveUserItem(userItem).addOnFailureListener {
         }.addOnCompleteListener {
         }
     }
 
-    // get realtime updates from firebase regarding saved users
+    // get real-time updates from FireBase regarding saved users
     fun getUserData(): LiveData<List<UserItem>> {
-        firebaseRepository.getSavedUser().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+        fireBaseRepository.getSavedUser().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
             if (e != null) {
                 savedUser.value = null
                 return@EventListener

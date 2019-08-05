@@ -1,8 +1,8 @@
 package com.sa.gym.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.sa.gym.R
 
 class AddUserActivity : AppCompatActivity() {

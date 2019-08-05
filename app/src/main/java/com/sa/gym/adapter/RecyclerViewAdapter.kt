@@ -3,6 +3,8 @@ package com.sa.gym.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sa.gym.R
 import com.sa.gym.model.UserItem
@@ -21,9 +23,9 @@ class RecyclerViewAdapter(private val userItem: List<UserItem>) :
         holder.intime.text = userItem[position].inTime
         holder.outtime.text = userItem[position].outTime
         if (!userItem[position].paymentStatus)
-            holder.due.setImageResource(R.drawable.reddot)
+            holder.due.setImageResource(R.drawable.ic_red_dot)
         else
-            holder.due.setImageResource(R.drawable.greendot)
+            holder.due.setImageResource(R.drawable.ic_green_dot)
     }
 
     override fun getItemCount(): Int {
@@ -33,9 +35,9 @@ class RecyclerViewAdapter(private val userItem: List<UserItem>) :
 
     //view holder class
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name = itemView.text_name!!
-        val intime = itemView.text_intime!!
-        val outtime = itemView.text_outtime!!
-        val due = itemView.view_due!!
+        val name: TextView = itemView.text_name
+        val intime: TextView = itemView.text_in_time
+        val outtime: TextView = itemView.text_out_time
+        val due: ImageView = itemView.view_due
     }
 }

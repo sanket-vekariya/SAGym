@@ -1,13 +1,9 @@
 <resources>
     <string name="app_name">SA Gym</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_splash">SplashActivity</string>
-    <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_list_user">User List</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="signout">signout</string>
+    <string name="sign_out">SignOut</string>
     <string name="reminder">reminder</string>
     <string name="map">map</string>
     <string name="forget_password">Forget Password?</string>
@@ -21,13 +17,11 @@
     <string name="login_success">Login Successful!</string>
     <string name="insert_email_first">Insert Email First</string>
     <string name="insert_password_first">Insert Password First</string>
-    <string name="title_activity_maps">Map</string>
     <string name="some_error_occurred">Some Error Occurred</string>
     <string name="total_members">Total Members</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="email">Email</string>
-    <string name="remove_reminder">Remove Reminder</string>
     <string name="address">Address</string>
     <string name="in_time">In Time</string>
     <string name="out_time">Out Time</string>
@@ -50,8 +44,6 @@
     <string name="settings">Settings</string>
     <string name="cancel">Cancel</string>
     <string name="unable_to_connect">Unable to Connect</string>
-    <string name="permission_denied">Permission Denied</string>
-    <string name="permission_granted">Permission Granted</string>
     <string name="back">Back</string>
     <string name="due_paid">Due Paid</string>
     <string name="due_pending">Due Pending</string>
@@ -65,7 +57,17 @@
     <string name="default_web_client_id">278195569465-ki6t45flus1jek64hvj6ivafpu78n8ai.apps.googleusercontent.com
     </string>
     <string name="update_password">Update Password</string>
-    <string name="confirm_password">Enter Confirm Password</string>
+    <string name="email_not_exist_or_failed_to_send">Email not exist or Failed to send</string>
+    <string name="check_your_email_to_reset_your_password">Check Email to Reset Your Password!</string>
+    <string name="insert_all_the_data_first">Insert All The Data First</string>
+    <string name="date_picker_dialog_box">Date Picker Dialog Box</string>
+    <string name="time_picker_dialog_box">Time Picker Dialog Box</string>
+    <string name="insert_email_properly">Insert Email Properly</string>
+    <string name="verification_email_sent_to">Verification Email Sent to</string>
+    <string name="failed_to_send_verification_email">Failed to Send Verification Email.</string>
+    <string name="password_reset_success">Password Reset Success!</string>
+    <string name="fail_to_reset_password">Fail to Reset Password!</string>
+    <string name="user_added_successfully">User Added Successfully</string>
 
     <string-array name="filter">
         <item>ALL</item>

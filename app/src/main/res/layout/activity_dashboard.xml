@@ -51,6 +51,7 @@
             android:src="@android:drawable/ic_input_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:elevation="@dimen/elevation_medium_10"
-            android:id="@+id/fab_add_user"/>
+            style="Widget.MaterialComponents.Toolbar.PrimarySurface"
+            android:id="@+id/fab_add_user" android:layout_marginEnd="8dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,8 @@
-package com.sa.gym
+package com.sa.gym.utils
 
 import android.app.Application
 
+//For changing entire app's Font to "ROBOTO"
 class CustomApplicationClass : Application() {
     override fun onCreate() {
         super.onCreate()

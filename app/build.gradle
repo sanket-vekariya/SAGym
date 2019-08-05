@@ -25,13 +25,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    splits {
-        abi {
-            enable true
-            reset()
-            include "x86", "mips"
-            universalApk true
-        }
+    lintOptions{
+        abortOnError false
     }
 }
 

@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sa.gym.R
 import com.sa.gym.adapter.RecyclerViewAdapter
 import com.sa.gym.model.UserItem
-import com.sa.gym.viewModel.FirestoreRepository
-import com.sa.gym.viewModel.FirestoreViewModel
+import com.sa.gym.viewModel.FireStoreRepository
+import com.sa.gym.viewModel.FireStoreViewModel
 import kotlinx.android.synthetic.main.fragment_user_list.*
 
 
@@ -28,9 +28,9 @@ class UserListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val firestoreViewModel: FirestoreViewModel = ViewModelProviders.of(this).get(FirestoreViewModel::class.java)
+        val fireStoreViewModel: FireStoreViewModel = ViewModelProviders.of(this).get(FireStoreViewModel::class.java)
 
-        firestoreViewModel.getUserData().observe(this, Observer {
+        fireStoreViewModel.getUserData().observe(this, Observer {
             testRecyclerView.layoutManager = LinearLayoutManager(context)
             mAdapter = RecyclerViewAdapter(it)
             testRecyclerView.adapter = mAdapter
@@ -69,7 +69,7 @@ class UserListFragment : Fragment() {
 
     //Query for month-wise user selection
     fun customQuery(month: Int) {
-        FirestoreRepository().getSavedUser().whereEqualTo("month", month)
+        FireStoreRepository().getSavedUser().whereEqualTo("month", month)
             .addSnapshotListener { value, _ ->
                 savedUserList.clear()
                 for (doc in value!!) {

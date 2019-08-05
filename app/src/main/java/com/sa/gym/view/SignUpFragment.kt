@@ -13,7 +13,7 @@ import com.sa.gym.R
 import kotlinx.android.synthetic.main.fragment_signup.*
 
 
-class SignupFragment : Fragment() {
+class SignUpFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -28,15 +28,15 @@ class SignupFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         FirebaseApp.initializeApp(activity!!.applicationContext)
 
-        //signup button click add details in Firestore "admin" collection
-        button_signup.setOnClickListener {
-            val email = edit_email_signup.text.toString()
-            val password = edit_password_signup.text.toString()
+        //sign-up button click add details in FireStore "admin" collection
+        button_sign_up.setOnClickListener {
+            val email = edit_email_sign_up.text.toString()
+            val password = edit_password_sign_up.text.toString()
 
             when {
-                edit_email_signup.text.toString().isEmpty() -> edit_email_signup.error = "insert email first"
-                edit_password_signup.text.toString().isEmpty() -> edit_password_signup.error = "insert password first"
-                else -> //create user with email and password
+                edit_email_sign_up.text.toString().isEmpty() -> edit_email_sign_up.error = getString(R.string.insert_email_first)
+                edit_password_sign_up.text.toString().isEmpty() -> edit_password_sign_up.error = getString(R.string.insert_password_first)
+                else -> //create user with email and ic_password
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
@@ -44,7 +44,7 @@ class SignupFragment : Fragment() {
                                 transaction.replace(R.id.container, LoginFragment()).commit()
                                 emailValidation()
                             } else {
-                                edit_email_signup.error = "insert email properly"
+                                edit_email_sign_up.error = getString(R.string.insert_email_properly)
                             }
                         }
             }
@@ -57,13 +57,13 @@ class SignupFragment : Fragment() {
                 if (task.isSuccessful) {
                     Toast.makeText(
                         context,
-                        "Verification email sent to " + FirebaseAuth.getInstance().currentUser?.email,
+                        getString(R.string.verification_email_sent_to) + FirebaseAuth.getInstance().currentUser?.email,
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
                     Toast.makeText(
                         context,
-                        "Failed to send verification email.",
+                        getString(R.string.failed_to_send_verification_email),
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -14,7 +14,7 @@ class UserItem(
     var inTime: String,
     var outTime: String,
 
-    var addresss: String,
+    var address: String,
     var birthDate: String,
     var height: Float,
     var weight: Float,

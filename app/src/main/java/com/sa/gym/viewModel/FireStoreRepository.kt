@@ -3,20 +3,20 @@ package com.sa.gym.viewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
 import com.sa.gym.model.UserItem
-class FirestoreRepository {
 
-    var firestoreDB = FirebaseFirestore.getInstance()
+class FireStoreRepository {
 
-    // save user to firebase
+    private var fireStoreDB = FirebaseFirestore.getInstance()
+
+    // save user to FireBase
     fun saveUserItem(userItem: UserItem): Task<Void> {
-        val documentReference = firestoreDB.collection("user").document()
+        val documentReference = fireStoreDB.collection("user").document()
         return documentReference.set(userItem)
     }
 
-    // get saved users from firebase
+    // get saved users from FireBase
     fun getSavedUser(): CollectionReference {
-        return firestoreDB.collection("user")
+        return fireStoreDB.collection("user")
     }
 }
