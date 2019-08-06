@@ -40,10 +40,7 @@ class UserListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-         fireStoreViewModel = ViewModelProviders.of(this).get(FireStoreViewModel::class.java)
-
-        val productsRef = FireStoreRepository().getSavedUser()
-
+        fireStoreViewModel = ViewModelProviders.of(this).get(FireStoreViewModel::class.java)
         return inflater.inflate(R.layout.fragment_user_list, container, false)
     }
 
@@ -91,8 +88,8 @@ class UserListFragment : Fragment() {
 
                     nextQuery.get().addOnCompleteListener { t ->
                         if (t.isSuccessful) {
-                            for (d in t.result!!) {
-                                val userModel = d.toObject(UserItem::class.java)
+                            for (documentSnapshot in t.result!!) {
+                                val userModel = documentSnapshot.toObject(UserItem::class.java)
                                 list.add(userModel)
                             }
                             m1Adapter?.notifyDataSetChanged()
@@ -111,7 +108,6 @@ class UserListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         //----------------------spinner selected filtering----------------------------------------
         spinner.onItemSelectedListener = object : OnItemSelectedListener {

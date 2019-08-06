@@ -25,7 +25,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    lintOptions{
+    lintOptions {
         abortOnError false
     }
 }
@@ -48,9 +48,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:17.0.1'
     implementation 'com.google.firebase:firebase-auth:18.1.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
+    implementation 'com.facebook.android:facebook-login:5.1.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.shreyaspatil:FirebaseRecyclerPagination:1.0.1'
-    implementation "android.arch.paging:runtime:1.0.1"
+    implementation 'androidx.paging:paging-runtime:2.1.0'
+    implementation 'com.android.billingclient:billing:1.2'
 }

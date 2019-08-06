@@ -6,6 +6,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".view.UserListFragment">
+    <EditText android:layout_width="match_parent"
+              android:hint="@string/search_name"
+              android:id="@+id/edit_search_name"
+              android:layout_margin="@dimen/elevation_small_5"
+              android:layout_height="wrap_content"/>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -41,11 +46,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/elevation_medium_10"
-            android:layout_marginTop="@dimen/elevation_small_5">
+            android:layout_marginTop="@dimen/elevation_small_5"
+            android:baselineAligned="false">
 
         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:gravity="center"
-                      android:layout_weight="1">
+                      android:layout_weight="1"
+                      tools:ignore="UseCompoundDrawables">
             <TextView
                     android:text="@string/name"
                     android:layout_width="wrap_content"
@@ -57,17 +64,18 @@
             <ImageView
                     android:layout_marginStart="@dimen/small_8"
                     android:layout_width="15dp"
-                       android:layout_height="15dp"
-                       android:id="@+id/image_name"
-                       android:layout_gravity="center"
-                       android:src="@android:drawable/arrow_up_float"/>
+                    android:layout_height="15dp"
+                    android:id="@+id/image_name"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/arrow_up_float" android:contentDescription="@string/content_description"/>
         </LinearLayout>
 
 
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:gravity="center"
-                      android:layout_weight="1">
+                      android:layout_weight="1"
+                      tools:ignore="UseCompoundDrawables">
 
             <TextView
                     android:text="@string/in_time"
@@ -83,12 +91,12 @@
                        android:layout_height="15dp"
                        android:id="@+id/image_in_time"
                        android:layout_gravity="center"
-                       android:src="@android:drawable/arrow_up_float"/>
+                       android:src="@android:drawable/arrow_up_float" android:contentDescription="@string/content_description"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:gravity="center"
-                      android:layout_weight="1">
+                      android:layout_weight="1" tools:ignore="UseCompoundDrawables">
             <TextView
                     android:text="@string/out_time"
                     android:layout_width="wrap_content"
@@ -102,12 +110,13 @@
                        android:layout_height="15dp"
                        android:id="@+id/image_out_time"
                        android:layout_gravity="center"
-                       android:src="@android:drawable/arrow_up_float"/>
+                       android:src="@android:drawable/arrow_up_float" android:contentDescription="@string/content_description"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:gravity="center"
-                      android:layout_weight="1">
+                      android:layout_weight="1"
+                      tools:ignore="UseCompoundDrawables">
             <TextView
                     android:text="@string/due"
                     android:layout_width="wrap_content"
@@ -120,7 +129,7 @@
                        android:layout_height="15dp"
                        android:id="@+id/image_due"
                        android:layout_gravity="center"
-                       android:src="@android:drawable/arrow_up_float"/>
+                       android:src="@android:drawable/arrow_up_float" android:contentDescription="@string/content_description"/>
         </LinearLayout>
 
     </LinearLayout>

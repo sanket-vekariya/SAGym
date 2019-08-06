@@ -1,9 +1,11 @@
-package com.sa.gym.view.utils
+package com.sa.gym.utils
 
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
+import com.facebook.AccessToken
+import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
 import com.sa.gym.view.MainActivity
@@ -14,6 +16,7 @@ class AlertDialog : DialogFragment() {
         android.app.AlertDialog.Builder(activity)
             .setMessage(arguments?.getString(ALERT_MESSAGE))
             .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                LoginManager.getInstance().logOut()
                 FirebaseAuth.getInstance().signOut()
                 startActivity(Intent(context, MainActivity::class.java))
                 activity?.finish()

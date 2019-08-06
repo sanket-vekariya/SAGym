@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SA Gym</string>
-
+    <string name="facebook_app_id">2741786625855540</string>
+    <string name="fb_login_protocol_scheme">fb2741786625855540</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_list_user">User List</string>
     <string name="sign_out">SignOut</string>
@@ -68,6 +69,7 @@
     <string name="password_reset_success">Password Reset Success!</string>
     <string name="fail_to_reset_password">Fail to Reset Password!</string>
     <string name="user_added_successfully">User Added Successfully</string>
+    <string name="search_name">Search Name</string>
 
     <string-array name="filter">
         <item>ALL</item>

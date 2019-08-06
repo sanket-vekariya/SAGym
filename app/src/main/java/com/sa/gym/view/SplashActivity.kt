@@ -9,6 +9,7 @@ import android.provider.Settings
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.facebook.AccessToken
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
 import kotlinx.coroutines.Runnable
@@ -39,7 +40,7 @@ class SplashActivity : AppCompatActivity() {
 
 
     private val mRunnable: Runnable = Runnable {
-        if (currentFireBaseUser != null && currentFireBaseUser.isEmailVerified) {
+        if (currentFireBaseUser != null || AccessToken.getCurrentAccessToken() != null) {
             startActivity(Intent(applicationContext, DashboardActivity::class.java))
             finish()
         }

@@ -1,20 +1,13 @@
-package com.sa.gym.view.utils
+package com.sa.gym.utils
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.Editable
 import android.widget.DatePicker
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.sa.gym.R
-import com.sa.gym.view.TimePickerFragment
-import kotlinx.android.synthetic.main.fragment_form_add_user_first.*
 import java.util.*
 
 class DatePicker : DialogFragment(), DatePickerDialog.OnDateSetListener {

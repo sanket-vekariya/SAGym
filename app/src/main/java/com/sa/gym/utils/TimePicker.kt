@@ -1,4 +1,4 @@
-package com.sa.gym.view.utils
+package com.sa.gym.utils
 
 import android.app.Activity
 import android.app.Dialog

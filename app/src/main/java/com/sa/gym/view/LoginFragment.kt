@@ -2,18 +2,37 @@ package com.sa.gym.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.facebook.*
+import com.facebook.login.LoginResult
+import com.facebook.login.widget.LoginButton
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_login.*
+import java.util.*
 
 
 class LoginFragment : Fragment() {
+    lateinit var facebookSignInButton: LoginButton
+    private val EMAIL = "email"
+    private val TAG = this::class.java.name
+    private val RC_SIGN_IN: Int = 1
+    var accessToken = AccessToken.getCurrentAccessToken()
+    var isLoggedIn = accessToken != null && !accessToken.isExpired
+    private lateinit var callbackManager :CallbackManager
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        callbackManager = CallbackManager.Factory.create()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,6 +42,29 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        facebook_sign_in_button.setReadPermissions(listOf("public_profile","email"))
+
+        //facebook
+        facebook_sign_in_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+            override fun onSuccess(loginResult: LoginResult) {
+                Log.e("main", "login result: $loginResult")
+                Log.e("main", "access token : ${loginResult.accessToken}")
+
+                handleFacebookAccessToken(loginResult.accessToken)
+            }
+
+            override fun onCancel() {
+                Toast.makeText(context, "on cancel", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            override fun onError(exception: FacebookException) {
+                Toast.makeText(context, "some error occurred", Toast.LENGTH_SHORT).show()
+                return
+            }
+        })
+
+
         //login screen open
         button_login.setOnClickListener {
             when {
@@ -47,12 +89,43 @@ class LoginFragment : Fragment() {
         }
     }
 
+    private fun handleFacebookAccessToken(token: AccessToken) {
+        Log.d(TAG, "handleFacebookAccessToken:  $token")
+        val credential: AuthCredential = FacebookAuthProvider.getCredential(token.token)
+        FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+
+                Log.d(TAG, "signInWithCredential:success" +task?.result?.user?.email)
+                startActivity(Intent(context, DashboardActivity::class.java))
+                activity?.finish()
+                clearFindViewByIdCache()
+            } else {
+                task?.exception?.printStackTrace()
+                Log.d(TAG, "signInWithCredential:faliure" + task?.exception?.message)
+                Toast.makeText(context, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        Log.d(TAG ,"ON ACTIVITY RESULT")
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+        Toast.makeText(context, "done", Toast.LENGTH_SHORT).show()
+        if (requestCode == RC_SIGN_IN) {
+            Toast.makeText(context, "done", Toast.LENGTH_SHORT).show()
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
     //login authentication with email and ic_password
     private fun authentication(email: String, password: String) {
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful && FirebaseAuth.getInstance().currentUser!!.isEmailVerified) {
+
+                    Log.d(TAG, "signInWithCredential:success" +task?.result?.user?.email)
                     Toast.makeText(context, getString(R.string.login_success), Toast.LENGTH_LONG).show()
                     startActivity(Intent(context, DashboardActivity::class.java))
                     activity?.finish()
