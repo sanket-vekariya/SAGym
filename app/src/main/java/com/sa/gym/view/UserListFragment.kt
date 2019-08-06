@@ -34,15 +34,22 @@ class UserListFragment : Fragment() {
     private var isLastItemReached = false
     private val limit: Long = 15
     private lateinit var lastVisible: DocumentSnapshot
+    private lateinit var fireStoreViewModel :FireStoreViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val fireStoreViewModel: FireStoreViewModel = ViewModelProviders.of(this).get(FireStoreViewModel::class.java)
+         fireStoreViewModel = ViewModelProviders.of(this).get(FireStoreViewModel::class.java)
 
-        val rootRef = FirebaseFirestore.getInstance()
-        val productsRef = rootRef.collection("user")
+        val productsRef = FireStoreRepository().getSavedUser()
+
+        return inflater.inflate(R.layout.fragment_user_list, container, false)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val productsRef = FireStoreRepository().getSavedUser()
         val query = productsRef.limit(limit)
 
         fireStoreViewModel.getUserData().observe(this, Observer {
@@ -62,14 +69,6 @@ class UserListFragment : Fragment() {
             }
             lastVisible = task.result!!.documents[task.result!!.size() - 1]
         }
-        return inflater.inflate(R.layout.fragment_user_list, container, false)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val rootRef = FirebaseFirestore.getInstance()
-        val productsRef = rootRef.collection("user")
-
         val onScrollListener = object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
