@@ -5,13 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.sa.gym.R
@@ -21,45 +24,111 @@ import com.sa.gym.viewModel.FireStoreRepository
 import com.sa.gym.viewModel.FireStoreViewModel
 import kotlinx.android.synthetic.main.fragment_user_list.*
 
-
 class UserListFragment : Fragment() {
 
-    private var mAdapter: RecyclerViewAdapter? = null
     private var m1Adapter: RecyclerViewAdapter? = null
     private val savedUserList: MutableList<UserItem> = mutableListOf()
+    private val list: MutableList<UserItem> = mutableListOf()
     private var order = false
+    private var isScrolling = false
+    private var isLastItemReached = false
+    private val limit: Long = 15
+    private lateinit var lastVisible: DocumentSnapshot
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val fireStoreViewModel: FireStoreViewModel = ViewModelProviders.of(this).get(FireStoreViewModel::class.java)
 
+        val rootRef = FirebaseFirestore.getInstance()
+        val productsRef = rootRef.collection("user")
+        val query = productsRef.limit(limit)
+
         fireStoreViewModel.getUserData().observe(this, Observer {
             testRecyclerView.layoutManager = LinearLayoutManager(context)
-            mAdapter = RecyclerViewAdapter(it)
-            testRecyclerView.itemAnimator = DefaultItemAnimator()
-            testRecyclerView.adapter = mAdapter
+            m1Adapter = RecyclerViewAdapter(list)
+            testRecyclerView.adapter = m1Adapter
         })
-
+        //if query is completely executed
+        query.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                //adding user-item date into mutable list
+                for (document in task.result!!) {
+                    val productModel: UserItem = document.toObject(UserItem::class.java)
+                    list.add(productModel)
+                }
+                m1Adapter?.notifyDataSetChanged()
+            }
+            lastVisible = task.result!!.documents[task.result!!.size() - 1]
+        }
         return inflater.inflate(R.layout.fragment_user_list, container, false)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val rootRef = FirebaseFirestore.getInstance()
+        val productsRef = rootRef.collection("user")
+
+        val onScrollListener = object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                    isScrolling = true
+                }
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition()
+                val visibleItemCount = linearLayoutManager.childCount
+                val totalItemCount = linearLayoutManager.itemCount
+
+                if (isScrolling && firstVisibleItemPosition + visibleItemCount == totalItemCount && !isLastItemReached) {
+                    isScrolling = false
+                    val nextQuery = productsRef.startAfter(lastVisible).limit(limit)
+
+                    nextQuery.get().addOnCompleteListener { t ->
+                        if (t.isSuccessful) {
+                            for (d in t.result!!) {
+                                val userModel = d.toObject(UserItem::class.java)
+                                list.add(userModel)
+                            }
+                            m1Adapter?.notifyDataSetChanged()
+                            lastVisible = t.result!!.documents[t.result!!.size() - 1]
+                            if (t.result!!.size() < limit) {
+                                isLastItemReached = true
+                                Toast.makeText(context, "All The Data Loaded", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        testRecyclerView.addOnScrollListener(onScrollListener)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         //----------------------spinner selected filtering----------------------------------------
         spinner.onItemSelectedListener = object : OnItemSelectedListener {
             //if item is not selected
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                testRecyclerView.adapter = mAdapter
+                spinner.setSelection(0)
             }
 
             //on item selected
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, int: Int, long: Long) {
                 if (int != 0) {
                     customQuery(int)
-                } else if (int == 0)
-                    testRecyclerView.adapter = mAdapter
+                } else if (int == 0) {
+                    m1Adapter = RecyclerViewAdapter(list)
+                    testRecyclerView.adapter = m1Adapter
+                }
             }
         }
 

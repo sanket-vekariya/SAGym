@@ -173,6 +173,7 @@
                     android:singleLine="true"
                     android:maxLines="1"
                     android:focusable="false"
+                    android:cursorVisible="false"
                     android:focusableInTouchMode="false"
                     android:filterTouchesWhenObscured="false"
                     android:clickable="false"
