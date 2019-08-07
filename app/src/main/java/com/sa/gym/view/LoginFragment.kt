@@ -17,6 +17,7 @@ import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
+import com.sa.gym.model.FragmentTransaction
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -77,14 +78,12 @@ class LoginFragment : Fragment() {
 
         //forget ic_password
         text_forget_password.setOnClickListener {
-            val transaction = requireFragmentManager().beginTransaction()
-            transaction.replace(R.id.container, ForgetPasswordFragment()).addToBackStack(null).commit()
+            FragmentTransaction().FragTransactionReplacewithBackStack(requireFragmentManager(),ForgetPasswordFragment(),R.id.container)
         }
 
         //sign-up screen open
         text_sign_up.setOnClickListener {
-            val transaction = requireFragmentManager().beginTransaction()
-            transaction.replace(R.id.container, SignUpFragment()).addToBackStack(null).commit()
+            FragmentTransaction().FragTransactionReplacewithBackStack(requireFragmentManager(),SignUpFragment(),R.id.container)
         }
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseApp
 import com.sa.gym.R
+import com.sa.gym.model.FragmentTransaction
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,8 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this)
         setContentView(R.layout.activity_main)
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.container, LoginFragment()).commit()
+        FragmentTransaction().FragTransactionAddwithoutBackStack(supportFragmentManager,LoginFragment(),R.id.container)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

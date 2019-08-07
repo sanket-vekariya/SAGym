@@ -190,6 +190,7 @@ class UserListFragment : Fragment() {
         //------------------------pull down to refresh logic-----------------------------------------
         testSwipeRefreshLayout.setOnRefreshListener {
             testSwipeRefreshLayout.setColorSchemeColors(Color.MAGENTA)
+            edit_search_name.text = null
             testSwipeRefreshLayout.isRefreshing = false
             if (spinner.selectedItemPosition != 0)
                 spinner.setSelection(0)

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
+import com.sa.gym.model.FragmentTransaction
 import com.sa.gym.utils.AlertDialog
 import com.sa.gym.utils.DatePickerFragment
 import kotlinx.android.synthetic.main.activity_dashboard.*
@@ -19,13 +20,11 @@ class DashboardActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_dashboard -> {
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.container_dashboard, DashboardFragment()).commit()
+                FragmentTransaction().FragTransactionReplacewithoutBackStack(supportFragmentManager,DashboardFragment(),R.id.container_dashboard)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_list_user -> {
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.container_dashboard, UserListFragment()).commit()
+                FragmentTransaction().FragTransactionReplacewithoutBackStack(supportFragmentManager,UserListFragment(),R.id.container_dashboard)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -60,13 +59,11 @@ class DashboardActivity : AppCompatActivity() {
                 return true
             }
             R.id.menu_map -> {
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.container_dashboard, MapFragment()).commit()
+                FragmentTransaction().FragTransactionReplacewithoutBackStack(supportFragmentManager,MapFragment(),R.id.container_dashboard)
                 return true
             }
             R.id.menu_update_password -> {
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.container_dashboard, UpdatePasswordFragment()).commit()
+                FragmentTransaction().FragTransactionReplacewithoutBackStack(supportFragmentManager,UpdatePasswordFragment(),R.id.container_dashboard)
                 return true
             }
             R.id.menu_sign_out -> {

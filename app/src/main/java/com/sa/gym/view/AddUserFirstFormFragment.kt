@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.sa.gym.R
+import com.sa.gym.model.FragmentTransaction
 import com.sa.gym.utils.DatePicker
 import com.sa.gym.utils.TimePicker
 import kotlinx.android.synthetic.main.fragment_form_add_user_first.*
@@ -24,7 +25,6 @@ class AddUserFirstFormFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val fragment = AddUserSecondFormFragment()
         val bundle = Bundle()
-        val transaction = fragmentManager?.beginTransaction()
 
         edit_dob.setOnClickListener {
             val a = DatePicker()
@@ -63,7 +63,7 @@ class AddUserFirstFormFragment : Fragment() {
                 bundle.putString("address", edit_address.text.toString())
 
                 fragment.arguments = bundle
-                transaction!!.replace(R.id.container_activity_add_user, fragment).addToBackStack(null).commit()
+                FragmentTransaction().FragTransactionReplacewithBackStack(requireFragmentManager(),fragment,R.id.container_activity_add_user)
             } else {
                 Toast.makeText(context, getString(R.string.insert_all_the_data_first), Toast.LENGTH_SHORT).show()
             }

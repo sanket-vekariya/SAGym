@@ -63,7 +63,7 @@
     <string name="date_picker_dialog_box">Date Picker Dialog Box</string>
     <string name="time_picker_dialog_box">Time Picker Dialog Box</string>
     <string name="insert_email_properly">Insert Email Properly</string>
-    <string name="verification_email_sent_to">Verification Email Sent to</string>
+    <string name="verification_email_sent_to">Verification Email Sent to </string>
     <string name="failed_to_send_verification_email">Failed to Send Verification Email.</string>
     <string name="password_reset_success">Password Reset Success!</string>
     <string name="fail_to_reset_password">Fail to Reset Password!</string>
