@@ -148,6 +148,9 @@ class UserListFragment : Fragment() {
 
             //on item selected
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, int: Int, long: Long) {
+                if (edit_search_name.text != null){
+                    edit_search_name.text = null
+                }
                 if (int != 0) {
                     queryViewModel.customQueryEquals("month", int).observe(this@UserListFragment, Observer {
                         mAdapter = RecyclerViewAdapter(it)

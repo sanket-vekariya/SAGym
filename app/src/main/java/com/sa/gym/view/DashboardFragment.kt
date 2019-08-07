@@ -15,10 +15,7 @@ import kotlinx.android.synthetic.main.fragment_dashboard.*
 class DashboardFragment : Fragment() {
     private lateinit var queryViewModel: QueryViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //for live change in dashboard
         queryViewModel = ViewModelProviders.of(this).get(QueryViewModel::class.java)
@@ -29,6 +26,11 @@ class DashboardFragment : Fragment() {
             text_member_active.text = it[3].toString()
             text_member_inactive.text = it[4].toString()
         })
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreate(savedInstanceState)
         return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
 }

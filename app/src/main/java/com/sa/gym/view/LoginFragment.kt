@@ -54,12 +54,12 @@ class LoginFragment : Fragment() {
             }
 
             override fun onCancel() {
-                Toast.makeText(context, "on cancel", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.cancel), Toast.LENGTH_SHORT).show()
                 return
             }
 
             override fun onError(exception: FacebookException) {
-                Toast.makeText(context, "some error occurred", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.some_error_occurred), Toast.LENGTH_SHORT).show()
                 return
             }
         })
@@ -78,12 +78,20 @@ class LoginFragment : Fragment() {
 
         //forget ic_password
         text_forget_password.setOnClickListener {
-            FragmentTransaction().FragTransactionReplacewithBackStack(requireFragmentManager(),ForgetPasswordFragment(),R.id.container)
+            FragmentTransaction().FragTransactionReplacewithBackStack(
+                requireFragmentManager(),
+                ForgetPasswordFragment(),
+                R.id.container
+            )
         }
 
         //sign-up screen open
         text_sign_up.setOnClickListener {
-            FragmentTransaction().FragTransactionReplacewithBackStack(requireFragmentManager(),SignUpFragment(),R.id.container)
+            FragmentTransaction().FragTransactionReplacewithBackStack(
+                requireFragmentManager(),
+                SignUpFragment(),
+                R.id.container
+            )
         }
     }
 
@@ -92,14 +100,15 @@ class LoginFragment : Fragment() {
         val credential: AuthCredential = FacebookAuthProvider.getCredential(token.token)
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-
-                Log.d(TAG, "signInWithCredential:success" + task.result?.user?.email)
+                task.addOnCompleteListener { task ->
+                    Log.d(TAG, "signInWithCredential:success " + task.result?.user?.email)
+                }
                 startActivity(Intent(context, DashboardActivity::class.java))
                 activity?.finish()
                 clearFindViewByIdCache()
             } else {
                 task.exception?.printStackTrace()
-                Log.d(TAG, "signInWithCredential:faliure" + task.exception?.message)
+                Log.d(TAG, "signInWithCredential:failure " + task.exception?.message)
                 Toast.makeText(context, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
             }
         }

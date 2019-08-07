@@ -4,17 +4,32 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         tools:context=".view.UserListFragment">
-    <EditText android:layout_width="match_parent"
-              android:hint="@string/search_name"
-              android:singleLine="true"
-              android:lines="1"
-              android:maxLines="1"
-              android:minLines="1"
-              android:id="@+id/edit_search_name"
-              android:layout_margin="@dimen/elevation_small_5"
-              android:layout_height="wrap_content"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@android:color/darker_gray"
+            app:boxStrokeWidth="2dp"
+            app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
+            app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
+            app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
+            app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
+            android:layout_margin="@dimen/elevation_medium_10">
+
+    <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_search_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:minLines="1"
+            android:hint="@string/search_name"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -71,7 +86,8 @@
                     android:layout_height="15dp"
                     android:id="@+id/image_name"
                     android:layout_gravity="center"
-                    android:src="@android:drawable/arrow_up_float" android:contentDescription="@string/content_description"/>
+                    android:src="@android:drawable/arrow_up_float"
+                    android:contentDescription="@string/content_description"/>
         </LinearLayout>
 
 
@@ -95,7 +111,8 @@
                        android:layout_height="15dp"
                        android:id="@+id/image_in_time"
                        android:layout_gravity="center"
-                       android:src="@android:drawable/arrow_up_float" android:contentDescription="@string/content_description"/>
+                       android:src="@android:drawable/arrow_up_float"
+                       android:contentDescription="@string/content_description"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -114,7 +131,8 @@
                        android:layout_height="15dp"
                        android:id="@+id/image_out_time"
                        android:layout_gravity="center"
-                       android:src="@android:drawable/arrow_up_float" android:contentDescription="@string/content_description"/>
+                       android:src="@android:drawable/arrow_up_float"
+                       android:contentDescription="@string/content_description"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -133,7 +151,8 @@
                        android:layout_height="15dp"
                        android:id="@+id/image_due"
                        android:layout_gravity="center"
-                       android:src="@android:drawable/arrow_up_float" android:contentDescription="@string/content_description"/>
+                       android:src="@android:drawable/arrow_up_float"
+                       android:contentDescription="@string/content_description"/>
         </LinearLayout>
 
     </LinearLayout>
