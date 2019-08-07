@@ -5,12 +5,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.facebook.login.LoginManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthProvider
 import com.sa.gym.R
 import com.sa.gym.utils.AlertDialog
+import com.sa.gym.utils.DatePickerFragment
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 

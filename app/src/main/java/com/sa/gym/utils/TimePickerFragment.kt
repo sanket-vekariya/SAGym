@@ -1,4 +1,4 @@
-package com.sa.gym.view
+package com.sa.gym.utils
 
 import android.Manifest
 import android.annotation.SuppressLint

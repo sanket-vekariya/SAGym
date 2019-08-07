@@ -3,7 +3,7 @@ package com.sa.gym.model
 import java.io.Serializable
 
 //Modal class as constructor
-class UserItem(
+data class UserItem(
     var id: String,
     var firstName: String,
     var lastName: String,

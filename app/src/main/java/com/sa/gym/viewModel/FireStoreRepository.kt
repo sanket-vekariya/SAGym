@@ -21,16 +21,18 @@ class FireStoreRepository {
         return fireStoreDB.collection("user")
     }
 
+    // get saved user in ascending order
     fun getSavedUserAscending(field : String) : Query{
         return fireStoreDB.collection("user").orderBy(field, Query.Direction.ASCENDING)
     }
 
+    // get saved user in descencing order
     fun getSavedUserDescending(field : String) : Query{
         return fireStoreDB.collection("user").orderBy(field, Query.Direction.DESCENDING)
     }
 
+    // get saved user with field matches with int value
     fun getSavedUserEquals(field : String, value : Int) : Query{
         return fireStoreDB.collection("user").whereEqualTo(field,value)
     }
-
 }
