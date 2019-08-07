@@ -216,7 +216,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="@dimen/very_small_4"
                     android:layout_marginStart="@dimen/very_small_4"
-                    android:layout_marginTop="@dimen/small_8" android:layout_weight="2">
+                    android:layout_marginTop="@dimen/small_8"
+                    android:layout_weight="2">
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_in_time"

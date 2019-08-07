@@ -32,9 +32,6 @@
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning"
             tools:targetApi="o">
-        <activity android:name=".view.InAppBillingActivity"
-                  android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
-        </activity>
         <!-- Meta Data for Google Map Integrations -->
         <meta-data
                 android:name="com.google.android.geo.API_KEY"

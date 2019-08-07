@@ -8,6 +8,10 @@
         tools:context=".view.UserListFragment">
     <EditText android:layout_width="match_parent"
               android:hint="@string/search_name"
+              android:singleLine="true"
+              android:lines="1"
+              android:maxLines="1"
+              android:minLines="1"
               android:id="@+id/edit_search_name"
               android:layout_margin="@dimen/elevation_small_5"
               android:layout_height="wrap_content"/>

@@ -2,6 +2,8 @@ package com.sa.gym.view
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,45 +17,55 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.sa.gym.R
 import com.sa.gym.adapter.RecyclerViewAdapter
 import com.sa.gym.model.UserItem
 import com.sa.gym.viewModel.FireStoreRepository
 import com.sa.gym.viewModel.FireStoreViewModel
+import com.sa.gym.viewModel.QueryViewModel
 import kotlinx.android.synthetic.main.fragment_user_list.*
 
 class UserListFragment : Fragment() {
 
-    private var m1Adapter: RecyclerViewAdapter? = null
-    private val savedUserList: MutableList<UserItem> = mutableListOf()
+    private var mAdapter: RecyclerViewAdapter? = null
     private val list: MutableList<UserItem> = mutableListOf()
+    private val limit: Long = 15
     private var order = false
     private var isScrolling = false
     private var isLastItemReached = false
-    private val limit: Long = 15
+    private var firstVisibleItemPosition: Int = 0
+    private var visibleItemCount: Int = 0
+    private var totalItemCount: Int = 0
     private lateinit var lastVisible: DocumentSnapshot
-    private lateinit var fireStoreViewModel :FireStoreViewModel
+    private lateinit var fireStoreViewModel: FireStoreViewModel
+    private lateinit var queryViewModel: QueryViewModel
+    private lateinit var query: Query
+    private lateinit var nextQuery: Query
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var userModel: UserItem
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         fireStoreViewModel = ViewModelProviders.of(this).get(FireStoreViewModel::class.java)
+        queryViewModel = ViewModelProviders.of(this).get(QueryViewModel::class.java)
+
         return inflater.inflate(R.layout.fragment_user_list, container, false)
     }
 
     override fun onStart() {
         super.onStart()
-        val productsRef = FireStoreRepository().getSavedUser()
-        val query = productsRef.limit(limit)
+        query = FireStoreRepository().getSavedUser().limit(limit)
 
         fireStoreViewModel.getUserData().observe(this, Observer {
             testRecyclerView.layoutManager = LinearLayoutManager(context)
-            m1Adapter = RecyclerViewAdapter(list)
-            testRecyclerView.adapter = m1Adapter
+            mAdapter = RecyclerViewAdapter(list)
+            testRecyclerView.adapter = mAdapter
         })
+
         //if query is completely executed
         query.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -62,7 +74,7 @@ class UserListFragment : Fragment() {
                     val productModel: UserItem = document.toObject(UserItem::class.java)
                     list.add(productModel)
                 }
-                m1Adapter?.notifyDataSetChanged()
+                mAdapter?.notifyDataSetChanged()
             }
             lastVisible = task.result!!.documents[task.result!!.size() - 1]
         }
@@ -77,22 +89,22 @@ class UserListFragment : Fragment() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
-                val firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition()
-                val visibleItemCount = linearLayoutManager.childCount
-                val totalItemCount = linearLayoutManager.itemCount
+                linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
+                firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition()
+                visibleItemCount = linearLayoutManager.childCount
+                totalItemCount = linearLayoutManager.itemCount
 
                 if (isScrolling && firstVisibleItemPosition + visibleItemCount == totalItemCount && !isLastItemReached) {
                     isScrolling = false
-                    val nextQuery = productsRef.startAfter(lastVisible).limit(limit)
+                    nextQuery = FireStoreRepository().getSavedUser().startAfter(lastVisible).limit(limit)
 
                     nextQuery.get().addOnCompleteListener { t ->
                         if (t.isSuccessful) {
                             for (documentSnapshot in t.result!!) {
-                                val userModel = documentSnapshot.toObject(UserItem::class.java)
+                                userModel = documentSnapshot.toObject(UserItem::class.java)
                                 list.add(userModel)
                             }
-                            m1Adapter?.notifyDataSetChanged()
+                            mAdapter?.notifyDataSetChanged()
                             lastVisible = t.result!!.documents[t.result!!.size() - 1]
                             if (t.result!!.size() < limit) {
                                 isLastItemReached = true
@@ -109,6 +121,23 @@ class UserListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //searching in users
+        edit_search_name.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                queryViewModel.searchUserByName(edit_search_name.text.toString())
+                    .observe(this@UserListFragment, Observer {
+                        mAdapter = RecyclerViewAdapter(it)
+                        testRecyclerView.adapter = mAdapter
+                    })
+            }
+        })
+
         //----------------------spinner selected filtering----------------------------------------
         spinner.onItemSelectedListener = object : OnItemSelectedListener {
             //if item is not selected
@@ -119,10 +148,15 @@ class UserListFragment : Fragment() {
             //on item selected
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, int: Int, long: Long) {
                 if (int != 0) {
-                    customQuery(int)
+                    queryViewModel.customQueryEquals("month", int).observe(this@UserListFragment, Observer {
+                        mAdapter = RecyclerViewAdapter(it)
+                        testRecyclerView.adapter = mAdapter
+                    })
                 } else if (int == 0) {
-                    m1Adapter = RecyclerViewAdapter(list)
-                    testRecyclerView.adapter = m1Adapter
+                    fireStoreViewModel.getUserData().observe(this@UserListFragment, Observer {
+                        mAdapter = RecyclerViewAdapter(list)
+                        testRecyclerView.adapter = mAdapter
+                    })
                 }
             }
         }
@@ -164,66 +198,29 @@ class UserListFragment : Fragment() {
     }
 
     //------------------------------reset rotation of filter images----------------------------------
-    fun resetRotation() {
+    private fun resetRotation() {
         image_due.rotation = 0f
         image_in_time.rotation = 0f
         image_name.rotation = 0f
         image_out_time.rotation = 0f
     }
 
-    //---------------------------Query for month-wise user selection---------------------------------
-    fun customQuery(month: Int) {
-        FireStoreRepository().getSavedUser().whereEqualTo("month", month)
-            .addSnapshotListener { value, _ ->
-                savedUserList.clear()
-                m1Adapter = testRecyclerView.adapter as RecyclerViewAdapter
-                for (doc in value!!) {
-                    val userItem = doc.toObject(UserItem::class.java)
-                    savedUserList.add(userItem)
-                }
-                m1Adapter = RecyclerViewAdapter(savedUserList)
-                testRecyclerView.adapter = m1Adapter
-            }
-
-    }
-
     //----------------------function for switching of ascending, descending query---------------------
-    fun switchOrder(field: String) {
+    private fun switchOrder(field: String) {
         if (!order) {
-            queryAscending(field)
+//            queryAscending(field)
+            queryViewModel.queryAscending(field).observe(this@UserListFragment, Observer {
+                mAdapter = RecyclerViewAdapter(it)
+                testRecyclerView.adapter = mAdapter
+            })
             order = true
         } else if (order) {
-            queryDescending(field)
+            queryViewModel.queryDescending(field).observe(this@UserListFragment, Observer {
+                mAdapter = RecyclerViewAdapter(it)
+                testRecyclerView.adapter = mAdapter
+            })
             order = false
         }
-    }
-
-    //---------------------------------------Query for month-wise user selection-----------------------
-    fun queryAscending(field: String) {
-        FirebaseFirestore.getInstance().collection("user").orderBy(field, Query.Direction.ASCENDING).get()
-            .addOnSuccessListener {
-                savedUserList.clear()
-                for (doc in it!!) {
-                    val userItem = doc.toObject(UserItem::class.java)
-                    savedUserList.add(userItem)
-                }
-                m1Adapter = RecyclerViewAdapter(savedUserList)
-                testRecyclerView.adapter = m1Adapter
-            }
-    }
-
-    //---------------Query for month-wise user selection-------------------
-    fun queryDescending(field: String) {
-        FirebaseFirestore.getInstance().collection("user").orderBy(field, Query.Direction.DESCENDING).get()
-            .addOnSuccessListener {
-                savedUserList.clear()
-                for (doc in it!!) {
-                    val userItem = doc.toObject(UserItem::class.java)
-                    savedUserList.add(userItem)
-                }
-                m1Adapter = RecyclerViewAdapter(savedUserList)
-                testRecyclerView.adapter = m1Adapter
-            }
     }
 
     override fun onDestroyView() {

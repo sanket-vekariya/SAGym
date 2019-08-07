@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.sa.gym.R
 import com.sa.gym.model.UserItem
 import com.sa.gym.viewModel.FireStoreViewModel
+import com.sa.gym.viewModel.QueryViewModel
 import kotlinx.android.synthetic.main.fragment_form_add_user_second.*
 
 

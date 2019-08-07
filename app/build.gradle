@@ -55,4 +55,5 @@ dependencies {
     implementation 'com.shreyaspatil:FirebaseRecyclerPagination:1.0.1'
     implementation 'androidx.paging:paging-runtime:2.1.0'
     implementation 'com.android.billingclient:billing:1.2'
+    implementation 'com.anjlab.android.iab.v3:library:1.0.45'
 }

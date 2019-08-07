@@ -8,26 +8,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.facebook.*
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
 import com.facebook.login.LoginResult
-import com.facebook.login.widget.LoginButton
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_login.*
-import java.util.*
 
 
 class LoginFragment : Fragment() {
-    lateinit var facebookSignInButton: LoginButton
     private val EMAIL = "email"
+    private var PUBLIC_PROFILE = "public_profile"
     private val TAG = this::class.java.name
     private val RC_SIGN_IN: Int = 1
-    var accessToken = AccessToken.getCurrentAccessToken()
-    var isLoggedIn = accessToken != null && !accessToken.isExpired
-    private lateinit var callbackManager :CallbackManager
+    private lateinit var callbackManager: CallbackManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         callbackManager = CallbackManager.Factory.create()
@@ -42,7 +41,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        facebook_sign_in_button.setReadPermissions(listOf("public_profile","email"))
+        facebook_sign_in_button.setReadPermissions(listOf(PUBLIC_PROFILE, EMAIL))
 
         //facebook
         facebook_sign_in_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
@@ -95,13 +94,13 @@ class LoginFragment : Fragment() {
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
 
-                Log.d(TAG, "signInWithCredential:success" +task?.result?.user?.email)
+                Log.d(TAG, "signInWithCredential:success" + task.result?.user?.email)
                 startActivity(Intent(context, DashboardActivity::class.java))
                 activity?.finish()
                 clearFindViewByIdCache()
             } else {
-                task?.exception?.printStackTrace()
-                Log.d(TAG, "signInWithCredential:faliure" + task?.exception?.message)
+                task.exception?.printStackTrace()
+                Log.d(TAG, "signInWithCredential:faliure" + task.exception?.message)
                 Toast.makeText(context, getString(R.string.login_fail), Toast.LENGTH_SHORT).show()
             }
         }
@@ -109,7 +108,7 @@ class LoginFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        Log.d(TAG ,"ON ACTIVITY RESULT")
+        Log.d(TAG, "ON ACTIVITY RESULT")
         callbackManager.onActivityResult(requestCode, resultCode, data)
         Toast.makeText(context, "done", Toast.LENGTH_SHORT).show()
         if (requestCode == RC_SIGN_IN) {
@@ -125,7 +124,7 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful && FirebaseAuth.getInstance().currentUser!!.isEmailVerified) {
 
-                    Log.d(TAG, "signInWithCredential:success" +task?.result?.user?.email)
+                    Log.d(TAG, "signInWithCredential:success" + task.result?.user?.email)
                     Toast.makeText(context, getString(R.string.login_success), Toast.LENGTH_LONG).show()
                     startActivity(Intent(context, DashboardActivity::class.java))
                     activity?.finish()
