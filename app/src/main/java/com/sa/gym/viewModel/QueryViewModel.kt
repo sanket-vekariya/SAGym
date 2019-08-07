@@ -6,12 +6,12 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
 import com.sa.gym.model.UserItem
+import kotlin.math.sqrt
 
 class QueryViewModel : ViewModel() {
     private var fireBaseRepository = FireStoreRepository()
-    private var savedUser: MutableLiveData<List<UserItem>> = MutableLiveData()
     private var list: MutableLiveData<List<UserItem>> = MutableLiveData()
-
+    private var listLong: MutableLiveData<List<Long>> = MutableLiveData()
 
     fun searchUserByName(searchText: String): LiveData<List<UserItem>> {
         fireBaseRepository.getSavedUser().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
@@ -61,19 +61,59 @@ class QueryViewModel : ViewModel() {
     }
 
     //---------------------------Query for intValue-wise user selection---------------------------------
-    fun customQueryEquals(field : String, intValue: Int) : LiveData<List<UserItem>>{
-        fireBaseRepository.getSavedUserEquals(field,intValue).addSnapshotListener { value, _ ->
+    fun customQueryEquals(field: String, intValue: Int): LiveData<List<UserItem>> {
+        fireBaseRepository.getSavedUserEquals(field, intValue).addSnapshotListener { value, _ ->
 
             val listValue: MutableList<UserItem> = mutableListOf()
             for (doc in value!!) {
-                    val userItem = doc.toObject(UserItem::class.java)
-                    listValue.add(userItem)
-                }
-                list.value = listValue
+                val userItem = doc.toObject(UserItem::class.java)
+                listValue.add(userItem)
             }
-        return  list
+            list.value = listValue
+        }
+        return list
     }
 
+    //---------------------------Query for Paid, Pending Due Amount--------------------------------------
+    fun customQueryAmount(): LiveData<List<Long>> {
+        fireBaseRepository.getSavedUser().addSnapshotListener { value, _ ->
+            var totalPending: Long = 0
+            var totalDone: Long = 0
+            var totalDoc: Long = 0
+            var totalActive: Long = 0
+            var totalInactive: Long = 0
 
+            for (doc in value!!) {
+                val userItem:UserItem = doc.toObject(UserItem::class.java)
+                if (!userItem.paymentStatus) {
+                    val itemCost = doc.getLong("amount") as Long
+                    totalPending += itemCost
+                }
+                else if (userItem.paymentStatus) {
+                    val itemCost = doc.getLong("amount") as Long
+                    totalDone += itemCost
+                }
+
+                if (!userItem.active) {
+                    totalInactive += 1
+                }
+                else if (userItem.active) {
+                    totalActive += 1
+                }
+                totalDoc += value.count()
+            }
+            totalDoc = sqrt(totalDoc.toDouble()).toLong()
+
+            val listValue: MutableList<Long> = mutableListOf(totalDoc, totalDone, totalPending, totalActive, totalInactive)
+            listValue.add(0, totalDoc)
+            listValue.add(1, totalDone)
+            listValue.add(2, totalPending)
+            listValue.add(3, totalActive)
+            listValue.add(4, totalInactive)
+
+            listLong.value = listValue
+        }
+        return listLong
+    }
 
 }

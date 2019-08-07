@@ -33,5 +33,4 @@ class FireStoreRepository {
         return fireStoreDB.collection("user").whereEqualTo(field,value)
     }
 
-
 }

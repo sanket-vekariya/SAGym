@@ -52,7 +52,6 @@ class UserListFragment : Fragment() {
     ): View? {
         fireStoreViewModel = ViewModelProviders.of(this).get(FireStoreViewModel::class.java)
         queryViewModel = ViewModelProviders.of(this).get(QueryViewModel::class.java)
-
         return inflater.inflate(R.layout.fragment_user_list, container, false)
     }
 
@@ -65,7 +64,7 @@ class UserListFragment : Fragment() {
             mAdapter = RecyclerViewAdapter(list)
             testRecyclerView.adapter = mAdapter
         })
-
+        //---------------------------------Pagination Logic-------------------------------------
         //if query is completely executed
         query.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -78,6 +77,7 @@ class UserListFragment : Fragment() {
             }
             lastVisible = task.result!!.documents[task.result!!.size() - 1]
         }
+
         val onScrollListener = object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -106,7 +106,7 @@ class UserListFragment : Fragment() {
                             }
                             mAdapter?.notifyDataSetChanged()
                             lastVisible = t.result!!.documents[t.result!!.size() - 1]
-                            if (t.result!!.size() < limit) {
+                            if (t.result!!.size() <= limit) {
                                 isLastItemReached = true
                                 Toast.makeText(context, "All The Data Loaded", Toast.LENGTH_SHORT).show()
                             }
@@ -118,6 +118,7 @@ class UserListFragment : Fragment() {
         testRecyclerView.addOnScrollListener(onScrollListener)
     }
 
+    //---------------------------------Searching Name Logic------------------------------------------
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -138,7 +139,7 @@ class UserListFragment : Fragment() {
             }
         })
 
-        //----------------------spinner selected filtering----------------------------------------
+        //----------------------spinner selected filtering logic----------------------------------------
         spinner.onItemSelectedListener = object : OnItemSelectedListener {
             //if item is not selected
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -208,7 +209,6 @@ class UserListFragment : Fragment() {
     //----------------------function for switching of ascending, descending query---------------------
     private fun switchOrder(field: String) {
         if (!order) {
-//            queryAscending(field)
             queryViewModel.queryAscending(field).observe(this@UserListFragment, Observer {
                 mAdapter = RecyclerViewAdapter(it)
                 testRecyclerView.adapter = mAdapter
