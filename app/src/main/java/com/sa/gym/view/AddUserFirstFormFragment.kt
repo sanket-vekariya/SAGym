@@ -63,7 +63,8 @@ class AddUserFirstFormFragment : Fragment() {
                 bundle.putString("address", edit_address.text.toString())
 
                 fragment.arguments = bundle
-                FragmentTransaction().FragTransactionReplacewithBackStack(requireFragmentManager(),fragment,R.id.container_activity_add_user)
+                val transaction = fragmentManager?.beginTransaction()
+                transaction?.replace(R.id.container_activity_add_user, fragment)?.addToBackStack(null)?.commit()
             } else {
                 Toast.makeText(context, getString(R.string.insert_all_the_data_first), Toast.LENGTH_SHORT).show()
             }
