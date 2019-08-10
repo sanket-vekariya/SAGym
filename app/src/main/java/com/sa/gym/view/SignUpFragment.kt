@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
-import com.sa.gym.model.FragmentTransaction
+import com.sa.gym.utils.FragmentTransaction
 import kotlinx.android.synthetic.main.fragment_signup.*
 
 
@@ -41,7 +41,8 @@ class SignUpFragment : Fragment() {
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                FragmentTransaction().FragTransactionReplacewithoutBackStack(requireFragmentManager(),LoginFragment(),R.id.container)
+                                FragmentTransaction()
+                                    .FragTransactionReplacewithoutBackStack(requireFragmentManager(),LoginFragment(),R.id.container)
                                 emailValidation()
                             } else {
                                 edit_email_sign_up.error = getString(R.string.insert_email_properly)

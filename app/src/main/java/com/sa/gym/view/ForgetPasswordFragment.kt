@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
-import com.sa.gym.model.FragmentTransaction
+import com.sa.gym.utils.FragmentTransaction
 import kotlinx.android.synthetic.main.fragment_forget_password.*
 import kotlinx.android.synthetic.main.fragment_forget_password.view.*
 
@@ -39,7 +39,8 @@ class ForgetPasswordFragment : Fragment() {
                         getString(R.string.check_your_email_to_reset_your_password),
                         Toast.LENGTH_SHORT
                     ).show()
-                    FragmentTransaction().FragTransactionReplacewithoutBackStack(fragmentManager!!,LoginFragment(),R.id.container)
+                    FragmentTransaction()
+                        .FragTransactionReplacewithoutBackStack(fragmentManager!!,LoginFragment(),R.id.container)
 
                 } else {
                     Toast.makeText(context, getString(R.string.email_not_exist_or_failed_to_send), Toast.LENGTH_SHORT)

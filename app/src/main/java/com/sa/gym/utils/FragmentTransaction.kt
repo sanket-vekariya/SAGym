@@ -1,4 +1,4 @@
-package com.sa.gym.model
+package com.sa.gym.utils
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
