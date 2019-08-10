@@ -31,7 +31,7 @@ class UpdatePasswordFragment : DialogFragment() {
         button_password_update.setOnClickListener {
             val password = edit_password_update.text.toString().trim()
 
-            if (TextUtils.isEmpty(password)) {
+            if (!isValidPassword(password)) {
                 edit_password_update.error = getString(R.string.insert_password_first)
             } else {
                 mAuthPassword!!.updatePassword(password).addOnCompleteListener { task ->
@@ -44,5 +44,8 @@ class UpdatePasswordFragment : DialogFragment() {
                 }
             }
         }
+    }
+    private fun isValidPassword(target: CharSequence): Boolean {
+        return !TextUtils.isEmpty(target) || !TextUtils.isDigitsOnly(target) || !(target.length > 6) || !(target.length < 15)
     }
 }

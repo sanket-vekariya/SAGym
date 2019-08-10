@@ -11,8 +11,8 @@
 
     <dist:module dist:instant="true"/>
 
+    <!--android:name=".utils.CustomApplicationClass"-->
     <application
-            android:name=".utils.CustomApplicationClass"
             android:allowBackup="false"
             android:banner="@mipmap/ic_launcher_round"
             android:exported="false"

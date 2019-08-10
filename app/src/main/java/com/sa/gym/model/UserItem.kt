@@ -1,8 +1,10 @@
 package com.sa.gym.model
 
+import androidx.annotation.Keep
 import java.io.Serializable
 
 //Modal class as constructor
+@Keep
 data class UserItem(
     var id: String,
     var firstName: String,

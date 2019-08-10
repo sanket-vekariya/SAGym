@@ -2,6 +2,8 @@ package com.sa.gym.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,8 +37,8 @@ class SignUpFragment : Fragment() {
             val password = edit_password_sign_up.text.toString()
 
             when {
-                edit_email_sign_up.text.toString().isEmpty() -> edit_email_sign_up.error = getString(R.string.insert_email_first)
-                edit_password_sign_up.text.toString().isEmpty() -> edit_password_sign_up.error = getString(R.string.insert_password_first)
+                !isValidEmail(edit_email_sign_up.text.toString()) -> edit_email_sign_up.error = getString(R.string.insert_email_first)
+                !isValidPassword(edit_password_sign_up.text.toString()) -> edit_password_sign_up.error = getString(R.string.insert_password_first)
                 else -> //create user with email and ic_password
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
@@ -52,6 +54,15 @@ class SignUpFragment : Fragment() {
         }
 
     }
+
+    private fun isValidEmail(target: CharSequence): Boolean {
+        return !TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches()
+    }
+
+    private fun isValidPassword(target: CharSequence): Boolean {
+        return !TextUtils.isEmpty(target) || !TextUtils.isDigitsOnly(target) || !(target.length > 6) || !(target.length < 15)
+    }
+
     private fun emailValidation() {
         FirebaseAuth.getInstance().currentUser?.sendEmailVerification()
             ?.addOnCompleteListener { task ->

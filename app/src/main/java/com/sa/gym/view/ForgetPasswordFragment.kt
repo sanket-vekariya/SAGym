@@ -2,6 +2,8 @@ package com.sa.gym.view
 
 
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +23,7 @@ class ForgetPasswordFragment : Fragment() {
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_forget_password, container, false)
         view.button_forget_password.setOnClickListener {
-            if (edit_email_forget_password.text.toString().isEmpty())
+            if (!isValidEmail(edit_email_forget_password.text.toString()))
                 edit_email_forget_password.error = getString(R.string.insert_email_first)
             else
                 forgetPassword(view.edit_email_forget_password.text.toString())
@@ -49,4 +51,7 @@ class ForgetPasswordFragment : Fragment() {
             }
     }
 
+    private fun isValidEmail(target: CharSequence): Boolean {
+        return !TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches()
+    }
 }

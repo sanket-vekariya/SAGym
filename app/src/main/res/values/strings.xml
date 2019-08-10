@@ -16,8 +16,8 @@
     <string name="send_email">Send Email</string>
     <string name="login_fail">Login Failed! Please Try Again Later</string>
     <string name="login_success">Login Successful!</string>
-    <string name="insert_email_first">Insert Email First</string>
-    <string name="insert_password_first">Insert Password First</string>
+    <string name="insert_email_first">Insert Email Properly</string>
+    <string name="insert_password_first">Insert Password Properly</string>
     <string name="some_error_occurred">Some Error Occurred</string>
     <string name="total_members">Total Members</string>
     <string name="first_name">First Name</string>

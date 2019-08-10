@@ -171,8 +171,18 @@ class UserListFragment : Fragment() {
             switchOrder("firstName")
             image_name.rotation = image_name.rotation + 180
         }
+        image_name.setOnClickListener {
+            spinner.setSelection(0)
+            switchOrder("firstName")
+            image_name.rotation = image_name.rotation + 180
+        }
 
         text_fix_in_time.setOnClickListener {
+            spinner.setSelection(0)
+            switchOrder("inTime")
+            image_in_time.rotation = image_in_time.rotation + 180
+        }
+        image_in_time.setOnClickListener {
             spinner.setSelection(0)
             switchOrder("inTime")
             image_in_time.rotation = image_in_time.rotation + 180
@@ -183,13 +193,22 @@ class UserListFragment : Fragment() {
             switchOrder("outTime")
             image_out_time.rotation = image_out_time.rotation + 180
         }
+        image_out_time.setOnClickListener {
+            spinner.setSelection(0)
+            switchOrder("outTime")
+            image_out_time.rotation = image_out_time.rotation + 180
+        }
 
         text_fix_due.setOnClickListener {
             spinner.setSelection(0)
             switchOrder("paymentStatus")
             image_due.rotation = image_due.rotation + 180
         }
-
+        image_due.setOnClickListener {
+            spinner.setSelection(0)
+            switchOrder("paymentStatus")
+            image_due.rotation = image_due.rotation + 180
+        }
         //------------------------pull down to refresh logic-----------------------------------------
         testSwipeRefreshLayout.setOnRefreshListener {
             testSwipeRefreshLayout.setColorSchemeColors(Color.MAGENTA)
