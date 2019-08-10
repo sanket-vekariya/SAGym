@@ -5,8 +5,8 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_list_user">User List</string>
     <string name="sign_out">SignOut</string>
-    <string name="reminder">reminder</string>
-    <string name="map">map</string>
+    <string name="reminder">Reminder</string>
+    <string name="map">Map</string>
     <string name="forget_password">Forget Password?</string>
     <string name="login">Login</string>
     <string name="enter_your_password">Enter Your Password</string>

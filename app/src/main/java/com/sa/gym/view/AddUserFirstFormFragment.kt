@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.sa.gym.R
-import com.sa.gym.model.FragmentTransaction
 import com.sa.gym.utils.DatePicker
 import com.sa.gym.utils.TimePicker
 import kotlinx.android.synthetic.main.fragment_form_add_user_first.*
