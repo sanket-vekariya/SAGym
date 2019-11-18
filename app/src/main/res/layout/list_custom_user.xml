@@ -1,71 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         android:layout_margin="@dimen/small_8"
+        android:background="@android:color/white"
         app:cardElevation="2dp"
         app:cardMaxElevation="3dp">
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
         <TextView
                 android:id="@+id/text_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="test user name"
+                android:layout_marginStart="@dimen/medium_16"
                 android:layout_marginTop="@dimen/medium_16"
+                android:layout_marginBottom="@dimen/medium_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.25"
-                android:layout_marginStart="@dimen/medium_16"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginBottom="@dimen/medium_16"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                tools:text="test user name" />
 
         <TextView
                 android:id="@+id/text_in_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="test in time"
+                android:layout_marginStart="@dimen/small_8"
                 android:layout_marginTop="@dimen/medium_16"
+                android:layout_marginBottom="@dimen/medium_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_name"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.25"
-                app:layout_constraintStart_toEndOf="@+id/text_name"
-                android:layout_marginStart="@dimen/small_8"
-                android:layout_marginBottom="@dimen/medium_16"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                tools:text="test in time" />
 
         <TextView
                 android:id="@+id/text_out_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="test out time"
+                android:layout_marginStart="@dimen/small_8"
                 android:layout_marginTop="@dimen/medium_16"
+                android:layout_marginBottom="@dimen/medium_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_in_time"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.25"
-                app:layout_constraintStart_toEndOf="@+id/text_in_time"
-                android:layout_marginStart="@dimen/small_8"
-                android:layout_marginBottom="@dimen/medium_16"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                tools:text="test out time" />
+
         <ImageView
+                android:id="@+id/view_due"
                 android:layout_width="@dimen/elevation_medium_10"
                 android:layout_height="@dimen/elevation_medium_10"
-                android:id="@+id/view_due"
-                android:background="@android:drawable/ic_media_ff"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/small_8"
                 android:layout_marginTop="@dimen/medium_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="@dimen/medium_16"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="@dimen/small_8"
+                android:layout_marginBottom="@dimen/medium_16"
+                android:background="@android:drawable/ic_media_ff"
                 android:contentDescription="@string/content_description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/text_out_time"
-                android:layout_marginStart="@dimen/small_8">
-
-        </ImageView>
-
+                app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

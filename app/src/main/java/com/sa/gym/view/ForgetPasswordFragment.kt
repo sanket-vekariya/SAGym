@@ -1,6 +1,5 @@
 package com.sa.gym.view
 
-
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
@@ -12,11 +11,9 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
 import com.sa.gym.utils.FragmentTransaction
-import kotlinx.android.synthetic.main.fragment_forget_password.*
 import kotlinx.android.synthetic.main.fragment_forget_password.view.*
 
 class ForgetPasswordFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,10 +39,18 @@ class ForgetPasswordFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                     FragmentTransaction()
-                        .FragTransactionReplacewithoutBackStack(fragmentManager!!,LoginFragment(),R.id.container)
+                        .FragTransactionReplacewithoutBackStack(
+                            fragmentManager!!,
+                            LoginFragment(),
+                            R.id.container
+                        )
 
                 } else {
-                    Toast.makeText(context, getString(R.string.email_not_exist_or_failed_to_send), Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        context,
+                        getString(R.string.email_not_exist_or_failed_to_send),
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                 }
             }

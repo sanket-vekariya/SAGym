@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
-import com.facebook.AccessToken
 import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
@@ -22,7 +21,6 @@ class AlertDialog : DialogFragment() {
                 activity?.finish()
             }
             .create()
-
 
     companion object {
         @JvmStatic

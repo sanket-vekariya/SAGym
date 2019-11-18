@@ -1,78 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         android:orientation="vertical"
-        tools:context=".view.AddUserFirstFormFragment"
-        android:fillViewport="true">
+        tools:context=".view.AddUserFirstFormFragment">
+
     <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:padding="20dp">
 
         <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:baselineAligned="false">
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
             <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxStrokeColor="@android:color/darker_gray"
-                    app:boxStrokeWidth="2dp"
+                    android:layout_marginStart="@dimen/small_8"
+                    android:layout_marginTop="@dimen/very_small_4"
+                    android:layout_marginEnd="@dimen/very_small_4"
+                    android:layout_weight="1"
                     app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
                     app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
                     app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
                     app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:boxStrokeColor="@android:color/darker_gray"
+                    app:boxStrokeWidth="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="@dimen/very_small_4"
-                    android:layout_marginTop="@dimen/very_small_4" android:layout_weight="1" android:layout_marginStart="@dimen/small_8"
-            >
+                    app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_first_name"
                         android:layout_width="match_parent"
-                        android:singleLine="true"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/small_8"
+                        android:hint="@string/first_name"
+                        android:inputType="textPersonName"
                         android:maxLines="1"
                         android:minLines="1"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/first_name"
-                        android:drawablePadding="@dimen/small_8"
-                        android:inputType="textPersonName"/>
-
+                        android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxStrokeColor="@android:color/darker_gray"
-                    app:boxStrokeWidth="2dp"
+                    android:layout_marginStart="@dimen/very_small_4"
+                    android:layout_marginTop="@dimen/very_small_4"
+                    android:layout_marginEnd="@dimen/small_8"
+                    android:layout_weight="1"
                     app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
                     app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
                     app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
                     app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:boxStrokeColor="@android:color/darker_gray"
+                    app:boxStrokeWidth="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="@dimen/small_8"
-                    android:layout_marginStart="@dimen/very_small_4"
-                    android:layout_marginTop="@dimen/very_small_4" android:layout_weight="1">
+                    app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_last_name"
                         android:layout_width="match_parent"
-                        android:singleLine="true"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/small_8"
+                        android:hint="@string/last_name"
+                        android:inputType="textPersonName"
                         android:maxLines="1"
                         android:minLines="1"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/last_name"
-                        android:drawablePadding="@dimen/small_8"
-                        android:inputType="textPersonName"/>
-
+                        android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -80,205 +83,198 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxStrokeColor="@android:color/darker_gray"
-                app:boxStrokeWidth="2dp"
+                android:layout_marginStart="@dimen/small_8"
+                android:layout_marginTop="@dimen/small_8"
+                android:layout_marginEnd="@dimen/small_8"
                 app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
                 app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
                 app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
                 app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                app:layout_constraintStart_toStartOf="parent"
+                app:boxStrokeColor="@android:color/darker_gray"
+                app:boxStrokeWidth="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="@dimen/small_8"
-                android:layout_marginStart="@dimen/small_8"
-                android:layout_marginTop="@dimen/small_8">
+                app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_email"
                     android:layout_width="match_parent"
-                    android:singleLine="true"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/small_8"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:minLines="1"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/email"
-                    android:drawablePadding="@dimen/small_8"
-                    android:inputType="textEmailAddress"/>
-
+                    android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxStrokeColor="@android:color/darker_gray"
-                app:boxStrokeWidth="2dp"
+                android:layout_marginStart="@dimen/small_8"
+                android:layout_marginTop="@dimen/small_8"
+                android:layout_marginEnd="@dimen/small_8"
                 app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
                 app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
                 app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
                 app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                app:layout_constraintStart_toStartOf="parent"
+                app:boxStrokeColor="@android:color/darker_gray"
+                app:boxStrokeWidth="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="@dimen/small_8"
-                android:layout_marginStart="@dimen/small_8"
-                android:layout_marginTop="@dimen/small_8">
+                app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_contact"
                     android:layout_width="match_parent"
-                    android:singleLine="true"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/small_8"
+                    android:hint="@string/contact_number"
+                    android:inputType="phone"
+                    android:maxLength="10"
                     android:maxLines="1"
                     android:minLines="1"
-                    android:maxLength="10"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/contact_number"
-                    android:drawablePadding="@dimen/small_8"
-                    android:inputType="phone"/>
-
+                    android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxStrokeColor="@android:color/darker_gray"
-                app:boxStrokeWidth="2dp"
+                android:layout_marginStart="@dimen/small_8"
+                android:layout_marginTop="@dimen/small_8"
+                android:layout_marginEnd="@dimen/small_8"
                 app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
                 app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
                 app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
                 app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                app:layout_constraintStart_toStartOf="parent"
+                app:boxStrokeColor="@android:color/darker_gray"
+                app:boxStrokeWidth="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="@dimen/small_8"
-                android:layout_marginStart="@dimen/small_8"
-                android:layout_marginTop="@dimen/small_8">
+                app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_address"
                     android:layout_width="match_parent"
-                    android:lines="4"
-                    android:singleLine="true"
-                    android:minLines="2"
                     android:layout_height="wrap_content"
-                    android:hint="@string/address"
                     android:drawablePadding="@dimen/small_8"
-                    android:inputType="textMultiLine"/>
-
+                    android:hint="@string/address"
+                    android:inputType="textMultiLine"
+                    android:lines="4"
+                    android:minLines="2"
+                    android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:orientation="horizontal"
-                      android:layout_height="wrap_content"
-                      android:baselineAligned="false">
-
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edit_dob_inputlayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxStrokeColor="@android:color/darker_gray"
-                    app:boxStrokeWidth="2dp"
-                    android:id="@+id/edit_dob_inputlayout"
+                    android:layout_marginStart="@dimen/small_8"
+                    android:layout_marginTop="@dimen/small_8"
+                    android:layout_marginEnd="@dimen/very_small_4"
+                    android:layout_weight="1.3"
                     app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
                     app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
                     app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
                     app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:boxStrokeColor="@android:color/darker_gray"
+                    app:boxStrokeWidth="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="@dimen/very_small_4"
-                    android:layout_marginStart="@dimen/small_8"
-                    android:layout_marginTop="@dimen/small_8"
-                    android:layout_weight="1.3">
+                    app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_dob"
                         android:layout_width="match_parent"
-                        android:singleLine="true"
-                        android:maxLines="1"
-                        android:focusable="false"
-                        android:cursorVisible="false"
-                        android:minLines="1"
                         android:layout_height="wrap_content"
-                        android:hint="@string/date_of_birth"
+                        android:cursorVisible="false"
                         android:drawablePadding="@dimen/small_8"
-                        android:inputType="date"/>
-
+                        android:focusable="false"
+                        android:hint="@string/date_of_birth"
+                        android:inputType="date"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxStrokeColor="@android:color/darker_gray"
-                    app:boxStrokeWidth="2dp"
+                    android:layout_marginStart="@dimen/very_small_4"
+                    android:layout_marginTop="@dimen/small_8"
+                    android:layout_marginEnd="@dimen/very_small_4"
+                    android:layout_weight="2"
                     app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
                     app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
                     app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
                     app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:boxStrokeColor="@android:color/darker_gray"
+                    app:boxStrokeWidth="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="@dimen/very_small_4"
-                    android:layout_marginStart="@dimen/very_small_4"
-                    android:layout_marginTop="@dimen/small_8"
-                    android:layout_weight="2">
+                    app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_in_time"
                         android:layout_width="match_parent"
-                        android:singleLine="true"
-                        android:maxLines="1"
-                        android:focusable="false"
-                        android:cursorVisible="false"
-                        android:minLines="1"
                         android:layout_height="wrap_content"
-                        android:hint="@string/in_time"
+                        android:cursorVisible="false"
                         android:drawablePadding="@dimen/small_8"
-                        android:inputType="time"/>
-
+                        android:focusable="false"
+                        android:hint="@string/in_time"
+                        android:inputType="time"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxStrokeColor="@android:color/darker_gray"
-                    app:boxStrokeWidth="2dp"
+                    android:layout_marginStart="@dimen/very_small_4"
+                    android:layout_marginTop="@dimen/small_8"
+                    android:layout_marginEnd="@dimen/small_8"
+                    android:layout_weight="2"
                     app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
                     app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
                     app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
                     app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:boxStrokeColor="@android:color/darker_gray"
+                    app:boxStrokeWidth="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="@dimen/small_8"
-                    android:layout_marginStart="@dimen/very_small_4"
-                    android:layout_marginTop="@dimen/small_8"
-                    android:layout_weight="2">
+                    app:layout_constraintStart_toStartOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_out_time"
                         android:layout_width="match_parent"
-                        android:singleLine="true"
-                        android:maxLines="1"
-                        android:focusable="false"
-                        android:cursorVisible="false"
-                        android:minLines="1"
                         android:layout_height="wrap_content"
-                        android:hint="@string/out_time"
+                        android:cursorVisible="false"
                         android:drawablePadding="@dimen/small_8"
-                        android:inputType="time"/>
-
+                        android:focusable="false"
+                        android:hint="@string/out_time"
+                        android:inputType="time"
+                        android:maxLines="1"
+                        android:minLines="1"
+                        android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
-
         </LinearLayout>
-
 
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_16"
-                android:layout_marginBottom="@dimen/small_8"
                 android:layout_gravity="center"
-                android:textStyle="bold"
-                android:layout_marginEnd="@dimen/small_8"
                 android:layout_marginStart="@dimen/small_8"
-                android:text="@string/next"/>
+                android:layout_marginTop="@dimen/medium_16"
+                android:layout_marginEnd="@dimen/small_8"
+                android:layout_marginBottom="@dimen/small_8"
+                android:text="@string/next"
+                android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

@@ -1,6 +1,5 @@
 package com.sa.gym.utils
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.Dialog
@@ -13,7 +12,6 @@ import java.util.*
 class DatePicker : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
     //on date set time picker dialog open with passing value to it with bundle
-    @SuppressLint("CommitPrefEdits")
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         val intent = Intent()
         intent.putExtra("key_date", "$dayOfMonth/$month/$year")

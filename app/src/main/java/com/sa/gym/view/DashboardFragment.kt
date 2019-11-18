@@ -9,12 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.sa.gym.R
 import com.sa.gym.viewModel.QueryViewModel
-import kotlinx.android.synthetic.main.fragment_dashboard.*
-
 
 class DashboardFragment : Fragment() {
     private lateinit var queryViewModel: QueryViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //for live change in dashboard
@@ -29,7 +26,8 @@ class DashboardFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         super.onCreate(savedInstanceState)
         return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }

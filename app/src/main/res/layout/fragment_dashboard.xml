@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fillViewport="true"
         tools:context=".view.DashboardFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_total"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_8"
                 app:cardElevation="2dp"
-                android:id="@+id/card_total"
                 app:cardMaxElevation="3dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_margin="@dimen/small_8">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -28,270 +29,273 @@
                 <TextView
                         android:id="@+id/text_title_count"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/small_8"
+                        android:layout_marginTop="@dimen/small_8"
+                        android:layout_marginEnd="@dimen/small_8"
                         android:text="@string/total_members"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/small_8"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="@dimen/small_8"
-                        android:layout_marginEnd="@dimen/small_8"
                         app:layout_constraintEnd_toEndOf="parent"
-                        tools:ignore="SpUsage"/>
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="SpUsage" />
 
                 <TextView
                         android:id="@+id/text_member_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/small_8"
-                        android:text="@string/zero"
-                        app:layout_constraintTop_toBottomOf="@+id/text_title_count"
                         android:layout_marginStart="@dimen/small_8"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginTop="@dimen/small_8"
+                        android:layout_marginEnd="@dimen/small_8"
                         android:layout_marginBottom="@dimen/small_8"
+                        android:text="@string/zero"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginEnd="@dimen/small_8"/>
-
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_title_count" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
-                android:weightSum="1"
                 android:id="@+id/linearLayout_due"
-                android:gravity="center"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@id/card_total"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_8">
+                android:layout_marginTop="@dimen/small_8"
+                android:gravity="center"
+                android:weightSum="1"
+                app:layout_constraintTop_toBottomOf="@id/card_total">
+
             <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardElevation="2dp"
-                    app:cardMaxElevation="3dp"
-                    android:layout_weight="0.5"
-                    android:layout_marginEnd="@dimen/very_small_4"
+                    android:layout_margin="@dimen/small_8"
                     android:layout_marginStart="@dimen/very_small_4"
+                    android:layout_marginEnd="@dimen/very_small_4"
                     android:layout_marginBottom="@dimen/small_8"
-                    android:layout_margin="@dimen/small_8">
+                    android:layout_weight="0.5"
+                    app:cardElevation="2dp"
+                    app:cardMaxElevation="3dp">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
+
                     <TextView
                             android:id="@+id/text_title_due_done"
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/small_8"
+                            android:layout_marginTop="@dimen/small_8"
+                            android:layout_marginEnd="@dimen/small_8"
                             android:text="@string/due_paid"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/small_8"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="@dimen/small_8"
-                            android:layout_marginEnd="@dimen/small_8"
-                            app:layout_constraintEnd_toEndOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent" />
+
                     <ImageView
                             android:layout_width="@dimen/elevation_medium_10"
                             android:layout_height="@dimen/elevation_medium_10"
-                            android:contentDescription="@string/content_description"
-                            app:srcCompat="@drawable/ic_green_dot"
-                            app:layout_constraintTop_toTopOf="@+id/text_title_due_done"
-                            app:layout_constraintBottom_toBottomOf="@+id/text_title_due_done"
                             android:layout_marginStart="@dimen/small_8"
-                            app:layout_constraintStart_toEndOf="@+id/text_title_due_done"/>
+                            android:contentDescription="@string/content_description"
+                            app:layout_constraintBottom_toBottomOf="@+id/text_title_due_done"
+                            app:layout_constraintStart_toEndOf="@+id/text_title_due_done"
+                            app:layout_constraintTop_toTopOf="@+id/text_title_due_done"
+                            app:srcCompat="@drawable/ic_green_dot" />
+
                     <TextView
                             android:id="@+id/text_member_due_done"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/small_8"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="@dimen/small_8"
+                            android:layout_marginEnd="@dimen/small_8"
                             android:layout_marginBottom="@dimen/small_8"
+                            android:text="@string/zero"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="@dimen/small_8"
-                            android:text="@string/zero"
-                            android:layout_marginTop="@dimen/small_8"
-                            app:layout_constraintTop_toBottomOf="@+id/text_title_due_done"/>
-
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_title_due_done" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
-
             <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardElevation="2dp"
-                    app:cardMaxElevation="3dp"
-                    android:layout_weight="0.5"
-                    android:id="@+id/materialCardView"
-                    android:layout_marginEnd="@dimen/very_small_4"
+                    android:layout_margin="@dimen/small_8"
                     android:layout_marginStart="@dimen/very_small_4"
+                    android:layout_marginEnd="@dimen/very_small_4"
                     android:layout_marginBottom="@dimen/small_8"
-                    android:layout_margin="@dimen/small_8">
+                    android:layout_weight="0.5"
+                    app:cardElevation="2dp"
+                    app:cardMaxElevation="3dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
+
                     <TextView
                             android:id="@+id/text_title_due_pending"
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/small_8"
+                            android:layout_marginTop="@dimen/small_8"
+                            android:layout_marginEnd="@dimen/small_8"
                             android:text="@string/due_pending"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/small_8"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="@dimen/small_8"
-                            android:layout_marginEnd="@dimen/small_8"
                             app:layout_constraintEnd_toEndOf="parent"
-                            tools:ignore="SpUsage"/>
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="SpUsage" />
 
                     <ImageView
                             android:layout_width="@dimen/elevation_medium_10"
                             android:layout_height="@dimen/elevation_medium_10"
+                            android:layout_marginStart="@dimen/small_8"
                             android:contentDescription="@string/content_description"
-                            app:srcCompat="@drawable/ic_red_dot"
-                            app:layout_constraintTop_toTopOf="@+id/text_title_due_pending"
                             app:layout_constraintBottom_toBottomOf="@+id/text_title_due_pending"
                             app:layout_constraintStart_toEndOf="@+id/text_title_due_pending"
-                            android:layout_marginStart="@dimen/small_8"/>
+                            app:layout_constraintTop_toTopOf="@+id/text_title_due_pending"
+                            app:srcCompat="@drawable/ic_red_dot" />
 
                     <TextView
                             android:id="@+id/text_member_due_pending"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/small_8"
-                            app:layout_constraintTop_toBottomOf="@+id/text_title_due_pending"
                             android:layout_marginStart="@dimen/small_8"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="@dimen/small_8"
+                            android:layout_marginEnd="@dimen/small_8"
                             android:layout_marginBottom="@dimen/small_8"
+                            android:text="@string/zero"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="@dimen/small_8"
-                            android:text="@string/zero"/>
-
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_title_due_pending" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-
         <LinearLayout
-                android:weightSum="1"
-                android:gravity="center"
                 android:id="@+id/linearLayout_active"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@id/linearLayout_due"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:weightSum="1"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout_due">
+
             <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardElevation="2dp"
-                    app:cardMaxElevation="3dp"
-                    android:layout_weight="0.5"
-                    android:layout_marginEnd="@dimen/very_small_4"
+                    android:layout_margin="@dimen/small_8"
                     android:layout_marginStart="@dimen/very_small_4"
+                    android:layout_marginEnd="@dimen/very_small_4"
                     android:layout_marginBottom="@dimen/small_8"
-                    android:layout_margin="@dimen/small_8">
+                    android:layout_weight="0.5"
+                    app:cardElevation="2dp"
+                    app:cardMaxElevation="3dp">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
+
                     <TextView
                             android:id="@+id/text_title_active"
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/small_8"
+                            android:layout_marginTop="@dimen/small_8"
+                            android:layout_marginEnd="@dimen/small_8"
+                            android:text="@string/active"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/small_8"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="@dimen/small_8"
-                            android:text="@string/active"
-                            android:layout_marginEnd="@dimen/small_8"
-                            app:layout_constraintEnd_toEndOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent" />
+
                     <ImageView
                             android:layout_width="@dimen/elevation_medium_10"
                             android:layout_height="@dimen/elevation_medium_10"
+                            android:layout_marginStart="@dimen/small_8"
                             android:contentDescription="@string/content_description"
-                            app:layout_constraintTop_toTopOf="@+id/text_title_active"
                             app:layout_constraintBottom_toBottomOf="@+id/text_title_active"
                             app:layout_constraintStart_toEndOf="@+id/text_title_active"
-                            android:layout_marginStart="@dimen/small_8"
-                            app:srcCompat="@drawable/ic_green_dot"/>
+                            app:layout_constraintTop_toTopOf="@+id/text_title_active"
+                            app:srcCompat="@drawable/ic_green_dot" />
+
                     <TextView
                             android:id="@+id/text_member_active"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/small_8"
-                            app:layout_constraintTop_toBottomOf="@+id/text_title_active"
                             android:layout_marginStart="@dimen/small_8"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="@dimen/small_8"
+                            android:layout_marginEnd="@dimen/small_8"
                             android:layout_marginBottom="@dimen/small_8"
+                            android:text="@string/zero"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="@dimen/small_8"
-                            android:text="@string/zero"/>
-
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_title_active" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
-
 
             <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardElevation="2dp"
-                    app:cardMaxElevation="3dp"
-                    android:layout_weight="0.5"
-                    android:layout_marginEnd="@dimen/very_small_4"
+                    android:layout_margin="@dimen/small_8"
                     android:layout_marginStart="@dimen/very_small_4"
+                    android:layout_marginEnd="@dimen/very_small_4"
                     android:layout_marginBottom="@dimen/small_8"
-                    android:layout_margin="@dimen/small_8">
+                    android:layout_weight="0.5"
+                    app:cardElevation="2dp"
+                    app:cardMaxElevation="3dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
+
                     <TextView
                             android:id="@+id/text_title_inactive"
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/small_8"
+                            android:layout_marginTop="@dimen/small_8"
+                            android:layout_marginEnd="@dimen/small_8"
                             android:text="@string/inactive"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/small_8"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="@dimen/small_8"
-                            android:layout_marginEnd="@dimen/small_8"
-                            app:layout_constraintEnd_toEndOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent" />
+
                     <ImageView
                             android:layout_width="@dimen/elevation_medium_10"
                             android:layout_height="@dimen/elevation_medium_10"
+                            android:layout_marginStart="@dimen/small_8"
                             android:contentDescription="@string/content_description"
-                            app:srcCompat="@drawable/ic_red_dot"
                             app:layout_constraintBottom_toBottomOf="@+id/text_title_inactive"
-                            app:layout_constraintTop_toTopOf="@+id/text_title_inactive"
                             app:layout_constraintStart_toEndOf="@+id/text_title_inactive"
-                            android:layout_marginStart="@dimen/small_8"/>
+                            app:layout_constraintTop_toTopOf="@+id/text_title_inactive"
+                            app:srcCompat="@drawable/ic_red_dot" />
+
                     <TextView
                             android:id="@+id/text_member_inactive"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/small_8"
-                            app:layout_constraintTop_toBottomOf="@+id/text_title_inactive"
                             android:layout_marginStart="@dimen/small_8"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="@dimen/small_8"
+                            android:layout_marginEnd="@dimen/small_8"
                             android:layout_marginBottom="@dimen/small_8"
+                            android:text="@string/zero"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="@dimen/small_8"
-                            android:text="@string/zero"/>
-
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_title_inactive" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

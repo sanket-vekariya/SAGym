@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/container"
@@ -10,48 +9,47 @@
 
     <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:elevation="@dimen/elevation_small_5"
-            app:layout_scrollFlags="scroll|enterAlways"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_scrollFlags="scroll|enterAlways" />
 
     <FrameLayout
+            android:id="@+id/container_dashboard"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/navigation"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/container_dashboard">
-    </FrameLayout>
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="0dp"
             android:background="?android:attr/windowBackground"
-            app:menu="@menu/navigation"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/navigation" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_user"
+            style="Widget.MaterialComponents.Toolbar.PrimarySurface"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/navigation"
-            app:layout_constraintStart_toStartOf="@+id/navigation"
             android:layout_marginStart="@dimen/small_8"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="@dimen/large_24"
             android:src="@android:drawable/ic_input_add"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:elevation="@dimen/elevation_medium_10"
-            style="Widget.MaterialComponents.Toolbar.PrimarySurface"
-            android:id="@+id/fab_add_user" android:layout_marginEnd="8dp"/>
-
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/navigation"
+            app:layout_constraintStart_toStartOf="@+id/navigation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

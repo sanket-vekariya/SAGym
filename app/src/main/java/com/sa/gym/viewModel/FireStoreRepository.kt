@@ -7,9 +7,7 @@ import com.google.firebase.firestore.Query
 import com.sa.gym.model.UserItem
 
 class FireStoreRepository {
-
     private var fireStoreDB = FirebaseFirestore.getInstance()
-
     // save user to FireBase
     fun saveUserItem(userItem: UserItem): Task<Void> {
         val documentReference = fireStoreDB.collection("user").document()
@@ -22,17 +20,17 @@ class FireStoreRepository {
     }
 
     // get saved user in ascending order
-    fun getSavedUserAscending(field : String) : Query{
+    fun getSavedUserAscending(field: String): Query {
         return fireStoreDB.collection("user").orderBy(field, Query.Direction.ASCENDING)
     }
 
     // get saved user in descencing order
-    fun getSavedUserDescending(field : String) : Query{
+    fun getSavedUserDescending(field: String): Query {
         return fireStoreDB.collection("user").orderBy(field, Query.Direction.DESCENDING)
     }
 
     // get saved user with field matches with int value
-    fun getSavedUserEquals(field : String, value : Int) : Query{
-        return fireStoreDB.collection("user").whereEqualTo(field,value)
+    fun getSavedUserEquals(field: String, value: Int): Query {
+        return fireStoreDB.collection("user").whereEqualTo(field, value)
     }
 }

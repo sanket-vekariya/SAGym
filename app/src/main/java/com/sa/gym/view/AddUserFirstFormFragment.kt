@@ -11,12 +11,14 @@ import androidx.fragment.app.Fragment
 import com.sa.gym.R
 import com.sa.gym.utils.DatePicker
 import com.sa.gym.utils.TimePicker
-import kotlinx.android.synthetic.main.fragment_form_add_user_first.*
 
 class AddUserFirstFormFragment : Fragment() {
-
     internal var id: String = ""
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_form_add_user_first, container, false)
     }
 
@@ -24,7 +26,6 @@ class AddUserFirstFormFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val fragment = AddUserSecondFormFragment()
         val bundle = Bundle()
-
         edit_dob.setOnClickListener {
             val a = DatePicker()
             a.setTargetFragment(this, 123)
@@ -56,16 +57,21 @@ class AddUserFirstFormFragment : Fragment() {
                 bundle.putString("lastName", edit_last_name.text.toString())
                 bundle.putString("email", edit_email.text.toString())
                 bundle.putLong("contact", edit_contact.text.toString().toLong())
-                bundle.putString("intime", edit_in_time.text.toString())
-                bundle.putString("outtime", edit_out_time.text.toString())
+                bundle.putString("inTime", edit_in_time.text.toString())
+                bundle.putString("outTime", edit_out_time.text.toString())
                 bundle.putString("dob", edit_dob.text.toString())
                 bundle.putString("address", edit_address.text.toString())
 
                 fragment.arguments = bundle
                 val transaction = fragmentManager?.beginTransaction()
-                transaction?.replace(R.id.container_activity_add_user, fragment)?.addToBackStack(null)?.commit()
+                transaction?.replace(R.id.container_activity_add_user, fragment)
+                    ?.addToBackStack(null)?.commit()
             } else {
-                Toast.makeText(context, getString(R.string.insert_all_the_data_first), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    getString(R.string.insert_all_the_data_first),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

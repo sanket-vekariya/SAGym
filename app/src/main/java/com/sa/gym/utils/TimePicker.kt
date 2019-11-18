@@ -17,16 +17,13 @@ class TimePicker : DialogFragment(), TimePickerDialog.OnTimeSetListener {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
         val calendar = Calendar.getInstance()
         val hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
         val minute = calendar.get(Calendar.MINUTE)
         val second = calendar.get(Calendar.SECOND)
-
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
         calendar.set(Calendar.MINUTE, minute)
         calendar.set(Calendar.SECOND, second)
-
         val custom = TimePickerDialog(activity, theme, this, hourOfDay, minute, true)
         return custom
     }

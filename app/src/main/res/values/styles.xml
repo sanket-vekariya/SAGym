@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -9,8 +9,6 @@
         <item name="android:listPreferredItemPaddingRight">5dp</item>
         <item name="android:windowBackground">@null</item>
         <item name="android:windowAnimationStyle">@null</item>
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:fontStyle" tools:targetApi="o">@font/roboto</item>
     </style>
 </resources>
 

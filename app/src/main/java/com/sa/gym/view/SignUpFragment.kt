@@ -13,12 +13,8 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.sa.gym.R
 import com.sa.gym.utils.FragmentTransaction
-import kotlinx.android.synthetic.main.fragment_signup.*
-
 
 class SignUpFragment : Fragment() {
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,21 +26,25 @@ class SignUpFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         FirebaseApp.initializeApp(activity!!.applicationContext)
-
         //sign-up button click add details in FireStore "admin" collection
         button_sign_up.setOnClickListener {
             val email = edit_email_sign_up.text.toString()
             val password = edit_password_sign_up.text.toString()
-
             when {
-                !isValidEmail(edit_email_sign_up.text.toString()) -> edit_email_sign_up.error = getString(R.string.insert_email_first)
-                !isValidPassword(edit_password_sign_up.text.toString()) -> edit_password_sign_up.error = getString(R.string.insert_password_first)
+                !isValidEmail(edit_email_sign_up.text.toString()) -> edit_email_sign_up.error =
+                    getString(R.string.insert_email_first)
+                !isValidPassword(edit_password_sign_up.text.toString()) -> edit_password_sign_up.error =
+                    getString(R.string.insert_password_first)
                 else -> //create user with email and ic_password
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 FragmentTransaction()
-                                    .FragTransactionReplacewithoutBackStack(requireFragmentManager(),LoginFragment(),R.id.container)
+                                    .FragTransactionReplacewithoutBackStack(
+                                        requireFragmentManager(),
+                                        LoginFragment(),
+                                        R.id.container
+                                    )
                                 emailValidation()
                             } else {
                                 edit_email_sign_up.error = getString(R.string.insert_email_properly)
@@ -52,7 +52,6 @@ class SignUpFragment : Fragment() {
                         }
             }
         }
-
     }
 
     private fun isValidEmail(target: CharSequence): Boolean {
@@ -60,7 +59,7 @@ class SignUpFragment : Fragment() {
     }
 
     private fun isValidPassword(target: CharSequence): Boolean {
-        return !TextUtils.isEmpty(target) || !TextUtils.isDigitsOnly(target) || !(target.length > 6) || !(target.length < 15)
+        return !TextUtils.isEmpty(target) || !TextUtils.isDigitsOnly(target) || target.length <= 6 || target.length >= 15
     }
 
     private fun emailValidation() {
@@ -81,5 +80,4 @@ class SignUpFragment : Fragment() {
                 }
             }
     }
-
 }

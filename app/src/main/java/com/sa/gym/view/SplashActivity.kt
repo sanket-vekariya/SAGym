@@ -16,12 +16,10 @@ import kotlinx.coroutines.Runnable
 import kotlin.system.exitProcess
 
 class SplashActivity : AppCompatActivity() {
-
     private var mDelayHandler: Handler? = null
-    private val splashDelay: Long = 5000
+    private val splashDelay: Long = 3000
     private var mInternetConnection: Boolean = false
     private val currentFireBaseUser = FirebaseAuth.getInstance().currentUser
-
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) {
@@ -38,7 +36,6 @@ class SplashActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 
-
     private val mRunnable: Runnable = Runnable {
         if (currentFireBaseUser != null || AccessToken.getCurrentAccessToken() != null) {
             startActivity(Intent(applicationContext, DashboardActivity::class.java))
@@ -54,14 +51,16 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         //Internet Availability
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetworkInfo = connectivityManager.activeNetworkInfo
         mInternetConnection = activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 
     private fun internetDialogBox() {
         val alert: AlertDialog
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetworkInfo = connectivityManager.activeNetworkInfo
         mInternetConnection = activeNetworkInfo != null && activeNetworkInfo.isConnected
 

@@ -19,7 +19,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.sa.gym.R
 
-
 class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     override fun onCreateView(
@@ -32,21 +31,22 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //setting up map fragment
-        val mapFragment = childFragmentManager.findFragmentById(R.id.fragment_map) as SupportMapFragment
+        val mapFragment =
+            childFragmentManager.findFragmentById(R.id.fragment_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
     private var builder = LatLngBounds.Builder()
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
         //fetch location from fire-store "location" collection in Fire-storeSample Project
         FirebaseFirestore.getInstance().collection("location")
             .get()
             .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
-                        val latLang = LatLng(document.get("lati") as Double, document.get("longi") as Double)
+                        val latLang =
+                            LatLng(document.get("lati") as Double, document.get("longi") as Double)
                         builder.include(latLang)
                         googleMap.addMarker(MarkerOptions().position(latLang).title(document.get("info") as String))
                     }
@@ -72,9 +72,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                             })
                         }
                     }
-
                 } else {
-                    Toast.makeText(context, getString(R.string.some_error_occurred), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        getString(R.string.some_error_occurred),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     return@OnCompleteListener
                 }
             })

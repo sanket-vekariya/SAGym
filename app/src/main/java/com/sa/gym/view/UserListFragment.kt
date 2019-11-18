@@ -24,10 +24,8 @@ import com.sa.gym.model.UserItem
 import com.sa.gym.viewModel.FireStoreRepository
 import com.sa.gym.viewModel.FireStoreViewModel
 import com.sa.gym.viewModel.QueryViewModel
-import kotlinx.android.synthetic.main.fragment_user_list.*
 
 class UserListFragment : Fragment() {
-
     private var mAdapter: RecyclerViewAdapter? = null
     private val list: MutableList<UserItem> = mutableListOf()
     private val limit: Long = 15
@@ -44,8 +42,6 @@ class UserListFragment : Fragment() {
     private lateinit var nextQuery: Query
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var userModel: UserItem
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,7 +54,6 @@ class UserListFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         query = FireStoreRepository().getSavedUser().limit(limit)
-
         fireStoreViewModel.getUserData().observe(this, Observer {
             testRecyclerView.layoutManager = LinearLayoutManager(context)
             mAdapter = RecyclerViewAdapter(list)
@@ -77,7 +72,6 @@ class UserListFragment : Fragment() {
             }
             lastVisible = task.result!!.documents[task.result!!.size() - 1]
         }
-
         val onScrollListener = object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -88,16 +82,14 @@ class UserListFragment : Fragment() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-
                 linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager
                 firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition()
                 visibleItemCount = linearLayoutManager.childCount
                 totalItemCount = linearLayoutManager.itemCount
-
                 if (isScrolling && firstVisibleItemPosition + visibleItemCount == totalItemCount && !isLastItemReached) {
                     isScrolling = false
-                    nextQuery = FireStoreRepository().getSavedUser().startAfter(lastVisible).limit(limit)
-
+                    nextQuery =
+                        FireStoreRepository().getSavedUser().startAfter(lastVisible).limit(limit)
                     nextQuery.get().addOnCompleteListener { t ->
                         if (t.isSuccessful) {
                             for (documentSnapshot in t.result!!) {
@@ -108,7 +100,8 @@ class UserListFragment : Fragment() {
                             lastVisible = t.result!!.documents[t.result!!.size() - 1]
                             if (t.result!!.size() <= limit) {
                                 isLastItemReached = true
-                                Toast.makeText(context, "All The Data Loaded", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "All The Data Loaded", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }
                     }
@@ -121,7 +114,6 @@ class UserListFragment : Fragment() {
     //---------------------------------Searching Name Logic------------------------------------------
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         //searching in users
         edit_search_name.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
@@ -138,7 +130,6 @@ class UserListFragment : Fragment() {
                     })
             }
         })
-
         //----------------------spinner selected filtering logic----------------------------------------
         spinner.onItemSelectedListener = object : OnItemSelectedListener {
             //if item is not selected
@@ -147,15 +138,21 @@ class UserListFragment : Fragment() {
             }
 
             //on item selected
-            override fun onItemSelected(adapterView: AdapterView<*>, view: View, int: Int, long: Long) {
-                if (edit_search_name.text != null){
+            override fun onItemSelected(
+                adapterView: AdapterView<*>,
+                view: View,
+                int: Int,
+                long: Long
+            ) {
+                if (edit_search_name.text != null) {
                     edit_search_name.text = null
                 }
                 if (int != 0) {
-                    queryViewModel.customQueryEquals("month", int).observe(this@UserListFragment, Observer {
-                        mAdapter = RecyclerViewAdapter(it)
-                        testRecyclerView.adapter = mAdapter
-                    })
+                    queryViewModel.customQueryEquals("month", int)
+                        .observe(this@UserListFragment, Observer {
+                            mAdapter = RecyclerViewAdapter(it)
+                            testRecyclerView.adapter = mAdapter
+                        })
                 } else if (int == 0) {
                     fireStoreViewModel.getUserData().observe(this@UserListFragment, Observer {
                         mAdapter = RecyclerViewAdapter(list)
@@ -164,7 +161,6 @@ class UserListFragment : Fragment() {
                 }
             }
         }
-
         //-----------------------------------------filtering by below fields----------------------
         text_fix_name.setOnClickListener {
             spinner.setSelection(0)
@@ -176,7 +172,6 @@ class UserListFragment : Fragment() {
             switchOrder("firstName")
             image_name.rotation = image_name.rotation + 180
         }
-
         text_fix_in_time.setOnClickListener {
             spinner.setSelection(0)
             switchOrder("inTime")
@@ -187,7 +182,6 @@ class UserListFragment : Fragment() {
             switchOrder("inTime")
             image_in_time.rotation = image_in_time.rotation + 180
         }
-
         text_fix_out_time.setOnClickListener {
             spinner.setSelection(0)
             switchOrder("outTime")
@@ -198,7 +192,6 @@ class UserListFragment : Fragment() {
             switchOrder("outTime")
             image_out_time.rotation = image_out_time.rotation + 180
         }
-
         text_fix_due.setOnClickListener {
             spinner.setSelection(0)
             switchOrder("paymentStatus")
@@ -216,7 +209,6 @@ class UserListFragment : Fragment() {
             testSwipeRefreshLayout.isRefreshing = false
             if (spinner.selectedItemPosition != 0)
                 spinner.setSelection(0)
-
             resetRotation()
         }
     }

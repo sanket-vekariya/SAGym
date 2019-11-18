@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         tools:context=".view.UserListFragment">
 
@@ -12,160 +11,177 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxStrokeColor="@android:color/darker_gray"
-            app:boxStrokeWidth="2dp"
+            android:layout_margin="@dimen/elevation_medium_10"
             app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
             app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
             app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
             app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-            android:layout_margin="@dimen/elevation_medium_10">
+            app:boxStrokeColor="@android:color/darker_gray"
+            app:boxStrokeWidth="2dp">
 
-    <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_search_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:maxLines="1"
-            android:minLines="1"
-            android:hint="@string/search_name"/>
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_search_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_name"
+                android:maxLines="1"
+                android:minLines="1"
+                android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
+
         <TextView
-                android:text="@string/filter_by"
+                android:id="@+id/text_fix_filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_fix_filter"
                 android:layout_marginStart="@dimen/elevation_medium_10"
                 android:layout_marginTop="@dimen/elevation_small_5"
-                android:textColor="@color/colorAccent"
                 android:layout_marginBottom="@dimen/elevation_small_5"
-                android:textStyle="bold"/>
+                android:text="@string/filter_by"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
+
         <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner"
+                style="@android:style/Widget.Material.Spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner"
-                android:layout_marginBottom="@dimen/elevation_small_5"
-                android:layout_marginTop="@dimen/elevation_small_5"
-                android:entries="@array/filter"
                 android:layout_marginStart="@dimen/elevation_small_5"
+                android:layout_marginTop="@dimen/elevation_small_5"
                 android:layout_marginEnd="@dimen/elevation_medium_10"
-                style="@android:style/Widget.Material.Spinner"
-                android:spinnerMode="dialog"
+                android:layout_marginBottom="@dimen/elevation_small_5"
+                android:entries="@array/filter"
+                android:layoutMode="opticalBounds"
                 android:overScrollMode="ifContentScrolls"
-                android:layoutMode="opticalBounds"/>
+                android:spinnerMode="dialog" />
     </LinearLayout>
 
     <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/elevation_medium_10"
             android:layout_marginTop="@dimen/elevation_small_5"
-            android:baselineAligned="false">
+            android:layout_marginBottom="@dimen/elevation_medium_10"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:gravity="center"
-                      android:layout_weight="1"
-                      tools:ignore="UseCompoundDrawables">
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                tools:ignore="UseCompoundDrawables">
+
             <TextView
-                    android:text="@string/name"
+                    android:id="@+id/text_fix_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/text_fix_name"
                     android:gravity="center"
-                    android:textStyle="bold"/>
+                    android:text="@string/name"
+                    android:textStyle="bold" />
 
             <ImageView
-                    android:layout_marginStart="@dimen/small_8"
+                    android:id="@+id/image_name"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:id="@+id/image_name"
                     android:layout_gravity="center"
-                    android:src="@android:drawable/arrow_up_float"
-                    android:contentDescription="@string/content_description"/>
+                    android:layout_marginStart="@dimen/small_8"
+                    android:contentDescription="@string/content_description"
+                    android:src="@android:drawable/arrow_up_float" />
         </LinearLayout>
 
-
-        <LinearLayout android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:gravity="center"
-                      android:layout_weight="1"
-                      tools:ignore="UseCompoundDrawables">
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                tools:ignore="UseCompoundDrawables">
 
             <TextView
-                    android:text="@string/in_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/text_fix_in_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:text="@string/in_time"
                     android:textColor="@android:color/holo_green_light"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
-            <ImageView android:layout_marginStart="@dimen/small_8"
-                       android:layout_width="15dp"
-                       android:layout_height="15dp"
-                       android:id="@+id/image_in_time"
-                       android:layout_gravity="center"
-                       android:src="@android:drawable/arrow_up_float"
-                       android:contentDescription="@string/content_description"/>
+            <ImageView
+                    android:id="@+id/image_in_time"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/small_8"
+                    android:contentDescription="@string/content_description"
+                    android:src="@android:drawable/arrow_up_float" />
         </LinearLayout>
 
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:gravity="center"
-                      android:layout_weight="1" tools:ignore="UseCompoundDrawables">
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                tools:ignore="UseCompoundDrawables">
+
             <TextView
-                    android:text="@string/out_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/text_fix_out_time"
-                    android:gravity="center"
-                    android:textColor="@android:color/holo_red_light"
-                    android:textStyle="bold"/>
-            <ImageView android:layout_marginStart="@dimen/small_8"
-                       android:layout_width="15dp"
-                       android:layout_height="15dp"
-                       android:id="@+id/image_out_time"
-                       android:layout_gravity="center"
-                       android:src="@android:drawable/arrow_up_float"
-                       android:contentDescription="@string/content_description"/>
-        </LinearLayout>
-
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:gravity="center"
-                      android:layout_weight="1"
-                      tools:ignore="UseCompoundDrawables">
-            <TextView
-                    android:text="@string/due"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/text_fix_due"
                     android:gravity="center"
-                    android:textStyle="bold"/>
-            <ImageView android:layout_marginStart="@dimen/small_8"
-                       android:layout_width="15dp"
-                       android:layout_height="15dp"
-                       android:id="@+id/image_due"
-                       android:layout_gravity="center"
-                       android:src="@android:drawable/arrow_up_float"
-                       android:contentDescription="@string/content_description"/>
+                    android:text="@string/out_time"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textStyle="bold" />
+
+            <ImageView
+                    android:id="@+id/image_out_time"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/small_8"
+                    android:contentDescription="@string/content_description"
+                    android:src="@android:drawable/arrow_up_float" />
         </LinearLayout>
 
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                    android:id="@+id/text_fix_due"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/due"
+                    android:textStyle="bold" />
+
+            <ImageView
+                    android:id="@+id/image_due"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/small_8"
+                    android:contentDescription="@string/content_description"
+                    android:src="@android:drawable/arrow_up_float" />
+        </LinearLayout>
     </LinearLayout>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/testSwipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/testRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/medium_16"
-                android:scrollbars="vertical"/>
+                android:scrollbars="vertical" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 </LinearLayout>

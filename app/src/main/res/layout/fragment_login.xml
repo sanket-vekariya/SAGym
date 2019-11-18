@@ -1,157 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.LoginFragment" android:fillViewport="true">
-
+        android:fillViewport="true"
+        tools:context=".view.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
         <ImageView
-                android:src="@mipmap/ic_launcher_foreground"
+                android:id="@+id/imageView_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView_login"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="@dimen/small_8"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="@dimen/small_8"
-                android:contentDescription="@string/content_description"
                 android:layout_marginTop="32dp"
-                app:layout_constraintTop_toTopOf="parent"/>
+                android:layout_marginEnd="@dimen/small_8"
+                android:contentDescription="@string/content_description"
+                android:src="@mipmap/ic_launcher_foreground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:id="@+id/emailLoginTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:boxStrokeColor="@android:color/darker_gray"
-                app:boxStrokeWidth="2dp"
+                android:layout_marginStart="@dimen/extra_large_40"
+                android:layout_marginTop="@dimen/small_8"
+                android:layout_marginEnd="@dimen/extra_large_40"
                 app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
                 app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
                 app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
                 app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                app:layout_constraintStart_toStartOf="parent"
+                app:boxStrokeColor="@android:color/darker_gray"
+                app:boxStrokeWidth="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="@dimen/extra_large_40"
-                android:layout_marginStart="@dimen/extra_large_40"
-                android:layout_marginTop="@dimen/small_8"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView_login">
 
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_email_login"
                     android:layout_width="match_parent"
-                    android:singleLine="true"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_user_name"
+                    android:drawablePadding="@dimen/small_8"
+                    android:hint="@string/enter_your_email"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:minLines="1"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/enter_your_email"
-                    android:drawablePadding="@dimen/small_8"
-                    android:drawableStart="@drawable/ic_user_name"
-                    android:inputType="textEmailAddress"/>
-
+                    android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:id="@+id/passwordLoginTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:boxStrokeColor="@android:color/darker_gray"
-                app:boxStrokeWidth="2dp"
+                android:layout_marginStart="@dimen/extra_large_40"
+                android:layout_marginTop="@dimen/medium_16"
+                android:layout_marginEnd="@dimen/extra_large_40"
                 app:boxCornerRadiusBottomEnd="@dimen/elevation_small_5"
                 app:boxCornerRadiusBottomStart="@dimen/elevation_small_5"
                 app:boxCornerRadiusTopEnd="@dimen/elevation_small_5"
                 app:boxCornerRadiusTopStart="@dimen/elevation_small_5"
-                app:passwordToggleEnabled="true"
+                app:boxStrokeColor="@android:color/darker_gray"
+                app:boxStrokeWidth="2dp"
                 app:counterMaxLength="15"
-                app:layout_constraintTop_toBottomOf="@id/emailLoginTextInputLayout"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="@dimen/extra_large_40"
-                android:layout_marginStart="@dimen/extra_large_40"
-                android:layout_marginTop="@dimen/medium_16">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emailLoginTextInputLayout"
+                app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_password_login"
                     android:layout_width="match_parent"
-                    android:singleLine="true"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_password"
+                    android:drawablePadding="@dimen/small_8"
+                    android:hint="@string/enter_your_password"
+                    android:inputType="textPassword"
+                    android:maxLength="15"
                     android:maxLines="1"
                     android:minLines="1"
-                    android:maxLength="15"
-                    app:passwordToggleEnabled="true"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/enter_your_password"
-                    android:drawablePadding="@dimen/small_8"
-                    android:drawableStart="@drawable/ic_password"
-                    android:inputType="textPassword"/>
-
+                    android:singleLine="true"
+                    app:passwordToggleEnabled="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/login"
                 android:layout_gravity="center"
-                app:rippleColor="@android:color/holo_orange_light"
-                android:shadowColor="@color/design_default_color_secondary"
-                app:elevation="3dp"
-                app:strokeColor="@android:color/white"
-                app:strokeWidth="1dp"
-                app:cornerRadius="@dimen/elevation_small_5"
-                app:layout_constraintTop_toBottomOf="@id/passwordLoginTextInputLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="@dimen/medium_16"
                 android:layout_marginLeft="@dimen/extra_large_40"
+                android:layout_marginTop="@dimen/medium_16"
                 android:layout_marginRight="@dimen/extra_large_40"
-                android:textStyle="bold"/>
+                android:shadowColor="@color/design_default_color_secondary"
+                android:text="@string/login"
+                android:textStyle="bold"
+                app:cornerRadius="@dimen/elevation_small_5"
+                app:elevation="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/passwordLoginTextInputLayout"
+                app:rippleColor="@android:color/holo_orange_light"
+                app:strokeColor="@android:color/white"
+                app:strokeWidth="1dp" />
 
         <TextView
-                android:text="@string/sign_up"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/text_sign_up"
-                android:clickable="true"
-                android:textStyle="bold"
-                android:textColor="@android:color/holo_orange_dark"
-                android:focusable="true"
-                android:elevation="3dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/text_forget_password"
-                app:layout_constraintBottom_toBottomOf="@+id/text_forget_password"
-                android:layout_marginEnd="@dimen/extra_large_40"/>
-        <TextView
-                android:text="@string/forget_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/text_forget_password"
+                android:layout_marginEnd="@dimen/extra_large_40"
                 android:clickable="true"
-                android:textStyle="bold"
-                android:textColor="@android:color/holo_orange_dark"
                 android:elevation="3dp"
                 android:focusable="true"
+                android:text="@string/sign_up"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/text_forget_password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/text_forget_password" />
+
+        <TextView
+                android:id="@+id/text_forget_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/extra_large_40"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="@dimen/small_8"
-                app:layout_constraintTop_toBottomOf="@+id/button_login"/>
+                android:clickable="true"
+                android:elevation="3dp"
+                android:focusable="true"
+                android:text="@string/forget_password"
+                android:textColor="@android:color/holo_orange_dark"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_login" />
 
         <com.facebook.login.widget.LoginButton
                 android:id="@+id/facebook_sign_in_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/text_forget_password"/>
-
+                app:layout_constraintTop_toBottomOf="@+id/text_forget_password" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

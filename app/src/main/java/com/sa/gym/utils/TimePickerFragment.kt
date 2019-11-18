@@ -19,49 +19,44 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
-
     private var hourOfDay: Int = 0
     private var minute: Int = 0
     private var second: Int = 0
     private var dayOfMonth: Int = 0
     private var month: Int = 0
     private var year: Int = 0
-
     private val calendar = Calendar.getInstance()
-
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        setReminderInCalendar("$year,${month + 1},$dayOfMonth,$hourOfDay,$minute", "Reminder", "Gym Reminder")
+        setReminderInCalendar(
+            "$year,${month + 1},$dayOfMonth,$hourOfDay,$minute",
+            "Reminder",
+            "Gym Reminder"
+        )
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val prefs: SharedPreferences = activity?.applicationContext!!.getSharedPreferences("date", MODE_PRIVATE)
+        val prefs: SharedPreferences =
+            activity?.applicationContext!!.getSharedPreferences("date", MODE_PRIVATE)
         dayOfMonth = prefs.getInt("dayOfMonth", 0)
         month = prefs.getInt("month", 0)
         year = prefs.getInt("year", 0)
-
         calendar.set(Calendar.YEAR, year)
         calendar.set(Calendar.MONTH, month)
         calendar.set(Calendar.DATE, dayOfMonth)
-
         hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
         minute = calendar.get(Calendar.MINUTE)
         second = calendar.get(Calendar.SECOND)
-
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
         calendar.set(Calendar.MINUTE, minute)
         calendar.set(Calendar.SECOND, second)
-
         return TimePickerDialog(activity, theme, this, hourOfDay, minute, true)
     }
 
     @SuppressLint("SimpleDateFormat")
     private fun setReminderInCalendar(startDate: String, title: String, description: String) {
         var stDate = startDate
-
         val calDate = GregorianCalendar()
-
         val originalFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
         val targetFormat = SimpleDateFormat("yyyy,MM,dd,HH,mm")
         val date: Date
@@ -71,14 +66,12 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
 
         } catch (ex: ParseException) {
         }
-
         val dates = stDate.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         val startYear = dates[0]
         val startMonth = dates[1]
         val startDay = dates[2]
         val startHour = dates[3]
         val startMinute = dates[4]
-
         calDate.set(
             Integer.parseInt(startYear),
             Integer.parseInt(startMonth) - 1,
@@ -87,7 +80,6 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
             Integer.parseInt(startMinute)
         )
         val startMillis: Long = calDate.timeInMillis
-
         try {
             val cr = activity?.contentResolver
             val values = ContentValues()
@@ -111,12 +103,15 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
                 return
             }
             cr?.insert(CalendarContract.Events.CONTENT_URI, values)
-            Toast.makeText(context, getString(R.string.reminder_set_successfully), Toast.LENGTH_SHORT).show()
-
+            Toast.makeText(
+                context,
+                getString(R.string.reminder_set_successfully),
+                Toast.LENGTH_SHORT
+            ).show()
         } catch (e: Exception) {
-            Toast.makeText(context, getString(R.string.failed_to_set_reminder), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.failed_to_set_reminder), Toast.LENGTH_SHORT)
+                .show()
             e.printStackTrace()
         }
-
     }
 }
